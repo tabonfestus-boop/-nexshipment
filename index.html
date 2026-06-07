@@ -1577,8 +1577,13 @@
       .section { padding: 60px 0; }
       #top-bar .top-bar-left { gap: 10px; }
       .top-bar-item:not(:first-child) { display: none; }
-      .nav-links { display: none; }
-      #hamburger { display: flex; }
+      .nav-links, .nav-right { display: none; }
+      #hamburger { display: flex; margin-left: auto; }
+      .slide-h1 { font-size: clamp(1.8rem, 8vw, 2.2rem); max-width: 100%; }
+      .slide-sub { font-size: 0.95rem; }
+      .tw-card { padding: 30px 20px; }
+      .tw-form-simple { flex-direction: column; }
+      #hero-track-btn { width: 100%; justify-content: center; }
       .tracking-widget-inner { grid-template-columns: 1fr; gap: 1rem; }
       .tw-phone { display: none; }
       .services-grid  { grid-template-columns: 1fr; }
@@ -1586,7 +1591,7 @@
       .perf-grid      { grid-template-columns: 1fr; }
       .badge-grid     { grid-template-columns: 1fr; }
       .testi-grid     { grid-template-columns: 1fr; }
-      .impact-grid    { grid-template-columns: repeat(2, 1fr); }
+      .impact-grid    { grid-template-columns: 1fr; }
       .footer-top     { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom  { flex-direction: column; text-align: center; }
       .tc-route-grid  { grid-template-columns: 1fr; }
