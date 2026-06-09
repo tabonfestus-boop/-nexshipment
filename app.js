@@ -1333,7 +1333,7 @@ window.downloadWaybill = function() {
     Coordinates: ${shipment.lat?.toFixed(4)}, ${shipment.lng?.toFixed(4)}
     
     This is an official waybill from SendFlex Logistics Solution.
-    SendFlextrace.com | ops@SendFlextrace.com
+    sendflexlogisticssolution.com | info@sendflexlogisticssolution.com
   `;
 
   const blob = new Blob([content], { type: 'text/plain' });
