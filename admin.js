@@ -1,15 +1,15 @@
 /* ==========================================
-   SendFlex Logistics Solution � Command Centre JS
+   PrimeLogistics Trace � Command Centre JS
    ==========================================*/
 'use strict';
 
 // --- Supabase ---
-const SUPABASE_URL = 'https://oswkzcwgtgvnkdlhrvop.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zd2t6Y3dndGd2bmtkbGhydm9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MzMzODAsImV4cCI6MjA5MTQwOTM4MH0.8n7dgTodojpZAD1C9VRP_bfcGOmc6TG_Xy4ik6P_5es';
+const SUPABASE_URL = 'https://qnxthmvhimyiysusfvpp.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFueHRobXZoaW15aXlzdXNmdnBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMzA3NTMsImV4cCI6MjA5NzYwNjc1M30.b8MsBfMvx-Pq74WirwrEQ31mM65aFtgxQLAgLycVBuA';
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/send-shipment-email`;
 
-const ADMIN_CREDS = { username: 'admin', password: 'SendFlex2026!' };
+const ADMIN_CREDS = { username: 'admin', password: 'PrimeLogistics2026!' };
 
 let allShipments = [];
 let adminMap = null;
@@ -579,7 +579,7 @@ async function geocodePromise(_, address) {
   const encoded = encodeURIComponent(address);
   const url = `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`;
   const res = await fetch(url, {
-    headers: { 'Accept-Language': 'en', 'User-Agent': 'SendFlexTrace/1.0' }
+    headers: { 'Accept-Language': 'en', 'User-Agent': 'PrimeLogistics TraceTrace/1.0' }
   });
   const data = await res.json();
   if (data && data.length > 0) {

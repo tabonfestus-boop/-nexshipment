@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Track Shipment — SendFlex Logistics Solution</title>
-  <meta name="description" content="Track your SendFlex shipment in real-time. Live GPS updates, milestone history, and interactive map."/>
+  <title>Track Shipment — PrimeLogistics Trace</title>
+  <meta name="description" content="Track your PrimeLogistics Trace shipment in real-time. Live GPS updates, milestone history, and interactive map."/>
   <link rel="icon" href="Logo.png"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -217,7 +217,7 @@
   <nav class="track-navbar">
     <a href="index.html" class="nav-logo">
       <div class="nav-logo-icon">
-        <img src="Logo.png" alt="SendFlex Logo">
+        <img src="Logo.png" alt="PrimeLogistics Trace Logo" style="background: rgba(255, 255, 255, 0.95); padding: 5px 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
       </div>
     </a>
     <a href="index.html" class="nav-back-btn">
@@ -261,7 +261,7 @@
     <div id="state-idle" class="state-idle">
       <div class="state-icon">📦</div>
       <div class="state-title">Ready to Track</div>
-      <p class="state-sub">Enter your SendFlex Logistics tracking number above to see live shipment status, GPS location, and milestone history.</p>
+      <p class="state-sub">Enter your PrimeLogistics Trace Logistics tracking number above to see live shipment status, GPS location, and milestone history.</p>
     </div>
 
     <!-- Loading State -->
@@ -525,8 +525,8 @@
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   <script>
   // ── Supabase ──
-  const SUPABASE_URL = 'https://oswkzcwgtgvnkdlhrvop.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zd2t6Y3dndGd2bmtkbGhydm9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MzMzODAsImV4cCI6MjA5MTQwOTM4MH0.8n7dgTodojpZAD1C9VRP_bfcGOmc6TG_Xy4ik6P_5es';
+  const SUPABASE_URL = 'https://qnxthmvhimyiysusfvpp.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFueHRobXZoaW15aXlzdXNmdnBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMzA3NTMsImV4cCI6MjA5NzYwNjc1M30.b8MsBfMvx-Pq74WirwrEQ31mM65aFtgxQLAgLycVBuA';
   const { createClient } = supabase;
   const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -808,7 +808,7 @@
   function doDownloadWaybill() {
     if (!currentShipment) return;
     const s = currentShipment;
-    const content = `SENDFLEX LOGISTICS SOLUTION — OFFICIAL WAYBILL\n${'='.repeat(46)}\nTracking Number: ${s.tracking_number}\nStatus:          ${s.status}\n\nSENDER:   ${s.sender_name || '—'}\nRECEIVER: ${s.receiver_name || '—'}\n\nORIGIN:      ${s.origin || '—'}\nDESTINATION: ${s.destination || '—'}\n\nWEIGHT:   ${s.weight ? s.weight + ' kg' : '—'}\nCONTENTS: ${s.description || '—'}\nEST. DELIVERY: ${s.estimated_delivery || '—'}\n\n${'='.repeat(46)}\nGenerated: ${new Date().toLocaleString()}\n\nThis is an official waybill from SendFlex Logistics Solution.\ninfo@sendflexlogisticssolution.com`;
+    const content = `PrimeLogistics Trace — OFFICIAL WAYBILL\n${'='.repeat(46)}\nTracking Number: ${s.tracking_number}\nStatus:          ${s.status}\n\nSENDER:   ${s.sender_name || '—'}\nRECEIVER: ${s.receiver_name || '—'}\n\nORIGIN:      ${s.origin || '—'}\nDESTINATION: ${s.destination || '—'}\n\nWEIGHT:   ${s.weight ? s.weight + ' kg' : '—'}\nCONTENTS: ${s.description || '—'}\nEST. DELIVERY: ${s.estimated_delivery || '—'}\n\n${'='.repeat(46)}\nGenerated: ${new Date().toLocaleString()}\n\nThis is an official waybill from PrimeLogistics Trace.\ninfo@PrimeLogistics Tracelogisticssolution.com`;
     const blob = new Blob([content], { type: 'text/plain' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
@@ -824,7 +824,7 @@
     if (!currentShipment) return;
     const url = window.location.href;
     if (navigator.share) {
-      navigator.share({ title: 'SendFlex Logistics Solution', text: `Track shipment ${currentShipment.tracking_number}`, url });
+      navigator.share({ title: 'PrimeLogistics Trace', text: `Track shipment ${currentShipment.tracking_number}`, url });
     } else {
       navigator.clipboard.writeText(url).then(() => showToast('🔗 Tracking link copied to clipboard!'));
     }
@@ -974,7 +974,7 @@
   }
 
   async function geocode(address) {
-    const res  = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`, { headers:{'Accept-Language':'en','User-Agent':'SendFlex/1.0'} });
+    const res  = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`, { headers:{'Accept-Language':'en'} });
     const data = await res.json();
     if (data && data.length > 0) return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
     throw new Error('Geocode failed: ' + address);

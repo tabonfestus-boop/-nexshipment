@@ -1,5 +1,5 @@
 /* ==========================================
-   SendFlex Logistics Solution — Main App JavaScript
+   PrimeLogistics Trace — Main App JavaScript
    ==========================================
    Modules:
      1. Supabase Client
@@ -16,8 +16,8 @@
 // ─────────────────────────────────────────
 // 1. SUPABASE CLIENT
 // ─────────────────────────────────────────
-const SUPABASE_URL = 'https://oswkzcwgtgvnkdlhrvop.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zd2t6Y3dndGd2bmtkbGhydm9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MzMzODAsImV4cCI6MjA5MTQwOTM4MH0.8n7dgTodojpZAD1C9VRP_bfcGOmc6TG_Xy4ik6P_5es';
+const SUPABASE_URL = 'https://qnxthmvhimyiysusfvpp.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFueHRobXZoaW15aXlzdXNmdnBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMzA3NTMsImV4cCI6MjA5NzYwNjc1M30.b8MsBfMvx-Pq74WirwrEQ31mM65aFtgxQLAgLycVBuA';
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -146,7 +146,7 @@ const MapController = (() => {
     const url = `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`;
     try {
       const res = await fetch(url, {
-        headers: { 'Accept-Language': 'en', 'User-Agent': 'SendFlexTrace/1.0' }
+        headers: { 'Accept-Language': 'en', 'User-Agent': 'PrimeLogistics TraceTrace/1.0' }
       });
       const data = await res.json();
       if (data && data.length > 0) {
@@ -1314,7 +1314,7 @@ window.downloadWaybill = function() {
   if (!shipment) return;
 
   const content = `
-    SendFlex Logistics Solution — OFFICIAL WAYBILL
+    PrimeLogistics Trace — OFFICIAL WAYBILL
     ========================================
     Tracking Number: ${shipment.tracking_number}
     Status:          ${shipment.status}
@@ -1333,8 +1333,8 @@ window.downloadWaybill = function() {
     Generated: ${new Date().toLocaleString()}
     Coordinates: ${shipment.lat?.toFixed(4)}, ${shipment.lng?.toFixed(4)}
     
-    This is an official waybill from SendFlex Logistics Solution.
-    sendflexlogisticssolution.com | info@sendflexlogisticssolution.com
+    This is an official waybill from PrimeLogistics Trace.
+    PrimeLogistics Tracelogisticssolution.com | info@PrimeLogistics Tracelogisticssolution.com
   `;
 
   const blob = new Blob([content], { type: 'text/plain' });
@@ -1355,7 +1355,7 @@ window.shareTracking = function() {
   const url = `${window.location.origin}${window.location.pathname}?track=${shipment.tracking_number}`;
 
   if (navigator.share) {
-    navigator.share({ title: 'SendFlex Logistics Solution', text: `Track shipment ${shipment.tracking_number}`, url });
+    navigator.share({ title: 'PrimeLogistics Trace', text: `Track shipment ${shipment.tracking_number}`, url });
   } else {
     navigator.clipboard.writeText(url).then(() => {
       UIController.showRealtimeNotification('🔗 Tracking link copied to clipboard!');
@@ -1387,6 +1387,6 @@ document.addEventListener('DOMContentLoaded', () => {
   QuoteFormHandler.init();
   checkURLTracking();
 
-  console.log('%c🚚 SendFlex Logistics Solution', 'color: #FF8C00; font-size: 18px; font-weight: bold;');
+  console.log('%c🚚 PrimeLogistics Trace', 'color: #FF8C00; font-size: 18px; font-weight: bold;');
   console.log('%cPowered by Supabase Realtime + Google Maps', 'color: #050A30; font-size: 12px;');
 });
