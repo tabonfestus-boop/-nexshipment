@@ -1126,14 +1126,19 @@
       position: relative;
     }
 
-    .testi-card::before {
-      content: '"';
+    .testi-flag {
       position: absolute;
-      top: 20px; right: 24px;
-      font-size: 5rem;
-      color: rgba(37,99,235,0.08);
-      font-family: Georgia, serif;
-      line-height: 1;
+      top: 24px; right: 24px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid white;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+    .testi-card:hover .testi-flag {
+      transform: scale(1.15) rotate(4deg);
     }
 
     .testi-card:hover { box-shadow: var(--shadow-md); border-color: rgba(37,99,235,0.15); transform: translateY(-4px); }
@@ -1592,6 +1597,49 @@
     }
 
     /* ─────────────────────────────────────
+       GLOBAL NETWORK MAP
+    ───────────────────────────────────── */
+    .map-hub {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .hub-pulse {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+      opacity: 0.7;
+    }
+    .hub-dot {
+      width: 8px; height: 8px;
+      background: white;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+    .hub-label {
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      background: rgba(0,0,0,0.5);
+      padding: 2px 6px;
+      border-radius: 4px;
+      opacity: 0.8;
+    }
+    @keyframes ping {
+      75%, 100% { transform: scale(3); opacity: 0; }
+    }
+
+    /* ─────────────────────────────────────
        WAYBILL PRINT
     ───────────────────────────────────── */
     #waybill-print { display: none; }
@@ -1892,6 +1940,108 @@
   </div>
 
   <!-- ════════════════════════════════════════
+       GLOBAL NETWORK (WOW FACTOR)
+  ════════════════════════════════════════ -->
+  <section id="global-network" style="background:var(--navy); padding:100px 0; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.03; background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    
+    <div class="container" style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center;">
+      <div style="text-align:center; max-width:700px; margin-bottom:60px;" class="reveal">
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2); padding:6px 14px; border-radius:30px; margin-bottom:20px;">
+          <div style="width:8px; height:8px; background:#22c55e; border-radius:50%; box-shadow:0 0 10px #22c55e; animation:ping 2s infinite;"></div>
+          <span style="color:#4ade80; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;">Live Operations Dashboard</span>
+        </div>
+        <h2 style="color:white; font-family:var(--font-head); font-size:clamp(2rem, 5vw, 3rem); font-weight:900; line-height:1.1; margin-bottom:20px;">Global Network <span style="color:var(--orange);">In Motion</span></h2>
+        <p style="color:rgba(255,255,255,0.6); font-size:1.1rem;">Watch our active shipments moving across 192+ countries in real-time. Over 2,400 active flights and sea freight routes managed daily.</p>
+      </div>
+
+      <div style="position:relative; width:100%; max-width:1000px; height:450px; background:radial-gradient(circle at center, rgba(37,99,235,0.1) 0%, transparent 70%); border-radius:30px; border:1px solid rgba(255,255,255,0.05);" class="reveal">
+        
+        <svg viewBox="0 0 1000 450" style="width:100%; height:100%; opacity:0.15; position:absolute; top:0; left:0; pointer-events:none;">
+          <path d="M 100 150 Q 200 100 300 150 T 450 180 M 500 100 Q 600 50 700 150 T 900 180 M 350 250 Q 400 350 300 400 M 600 200 Q 650 300 750 350 M 150 250 Q 250 300 200 400" fill="none" stroke="white" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+        </svg>
+
+        <div class="map-nodes" style="position:absolute; inset:0;">
+          <div class="map-hub" style="top:25%; left:22%;">
+            <div class="hub-pulse"></div><div class="hub-dot"></div><span class="hub-label">New York</span>
+          </div>
+          <div class="map-hub" style="top:20%; left:48%;">
+            <div class="hub-pulse"></div><div class="hub-dot"></div><span class="hub-label">London</span>
+          </div>
+          <div class="map-hub" style="top:60%; left:52%;">
+            <div class="hub-pulse"></div><div class="hub-dot"></div><span class="hub-label">Johannesburg</span>
+          </div>
+          <div class="map-hub" style="top:35%; left:75%;">
+            <div class="hub-pulse"></div><div class="hub-dot"></div><span class="hub-label">Singapore</span>
+          </div>
+          <div class="map-hub" style="top:40%; left:60%;">
+            <div class="hub-pulse"></div><div class="hub-dot"></div><span class="hub-label">Dubai</span>
+          </div>
+          <div class="map-hub" style="top:30%; left:85%;">
+            <div class="hub-pulse"></div><div class="hub-dot"></div><span class="hub-label">Tokyo</span>
+          </div>
+        </div>
+
+        <svg viewBox="0 0 1000 450" style="width:100%; height:100%; position:absolute; top:0; left:0; pointer-events:none;">
+          <defs>
+            <linearGradient id="line-grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF6600" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#2563EB" stop-opacity="0.1"/>
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          
+          <path id="route1" d="M 220 112 Q 350 70 480 90" fill="none" stroke="url(#line-grad1)" stroke-width="2" filter="url(#glow)"/>
+          <circle cx="0" cy="0" r="3" fill="#fff" filter="url(#glow)">
+            <animateMotion dur="4s" repeatCount="indefinite"><mpath href="#route1"/></animateMotion>
+          </circle>
+
+          <path id="route2" d="M 480 90 Q 550 130 600 180" fill="none" stroke="rgba(37,99,235,0.5)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="2.5" fill="#FF6600">
+            <animateMotion dur="3s" repeatCount="indefinite"><mpath href="#route2"/></animateMotion>
+          </circle>
+
+          <path id="route3" d="M 600 180 Q 680 180 750 157" fill="none" stroke="rgba(255,102,0,0.4)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="2.5" fill="#3b82f6">
+            <animateMotion dur="3.5s" repeatCount="indefinite"><mpath href="#route3"/></animateMotion>
+          </circle>
+
+          <path id="route4" d="M 480 90 Q 450 180 520 270" fill="none" stroke="rgba(37,99,235,0.4)" stroke-width="2"/>
+          <circle cx="0" cy="0" r="3" fill="#fff" filter="url(#glow)">
+            <animateMotion dur="5s" repeatCount="indefinite"><mpath href="#route4"/></animateMotion>
+          </circle>
+          
+          <path id="route5" d="M 750 157 Q 800 140 850 135" fill="none" stroke="url(#line-grad1)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="2" fill="#FF6600">
+            <animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#route5"/></animateMotion>
+          </circle>
+
+          <path id="route6" d="M 750 157 Q 650 250 520 270" fill="none" stroke="rgba(37,99,235,0.3)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="2.5" fill="#3b82f6">
+            <animateMotion dur="6s" repeatCount="indefinite"><mpath href="#route6"/></animateMotion>
+          </circle>
+        </svg>
+
+        <div style="position:absolute; bottom:30px; right:30px; background:rgba(255,255,255,0.05); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.1); padding:20px; border-radius:20px; display:flex; gap:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+          <div>
+            <div style="font-family:var(--font-head); font-size:1.5rem; font-weight:800; color:white;">12,491</div>
+            <div style="font-size:0.7rem; color:var(--orange); text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">Active Routes</div>
+          </div>
+          <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+          <div>
+            <div style="font-family:var(--font-head); font-size:1.5rem; font-weight:800; color:white;">192</div>
+            <div style="font-size:0.7rem; color:#4ade80; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">Countries</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
        SERVICES SECTION
   ════════════════════════════════════════ -->
   <section id="services" class="section">
@@ -2136,6 +2286,7 @@
 
       <div class="testi-grid">
         <div class="testi-card reveal">
+          <img src="https://flagcdn.com/za.svg" alt="South Africa" class="testi-flag">
           <div class="testi-stars">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -2154,6 +2305,7 @@
         </div>
 
         <div class="testi-card reveal">
+          <img src="https://flagcdn.com/de.svg" alt="Germany" class="testi-flag">
           <div class="testi-stars">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -2172,6 +2324,7 @@
         </div>
 
         <div class="testi-card reveal">
+          <img src="https://flagcdn.com/sg.svg" alt="Singapore" class="testi-flag">
           <div class="testi-stars">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
