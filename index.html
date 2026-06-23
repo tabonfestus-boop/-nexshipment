@@ -1178,41 +1178,74 @@
     ───────────────────────────────────── */
     #partners {
       background: white;
-      padding: 60px 0;
+      padding: 70px 0;
       border-top: 1px solid var(--gray-mid);
       border-bottom: 1px solid var(--gray-mid);
+      overflow: hidden;
     }
 
     .partners-label {
       text-align: center;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       color: var(--text-light);
-      margin-bottom: 36px;
+      margin-bottom: 48px;
     }
 
-    .partners-row {
+    .marquee-wrapper {
+      display: flex;
+      overflow: hidden;
+      user-select: none;
+      gap: 4rem;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .marquee-content {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      min-width: 100%;
+      gap: 4rem;
+      animation: scrollLeft 35s linear infinite;
+    }
+
+    @keyframes scrollLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-100% - 4rem)); }
+    }
+
+    .partner-brand {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 32px 56px;
+      gap: 12px;
+      color: var(--text-light);
+      opacity: 0.6;
+      transition: all 0.4s ease;
+      cursor: pointer;
     }
 
-    .partner-logo {
+    .partner-brand:hover {
+      opacity: 1;
+      color: var(--navy);
+      transform: scale(1.05);
+    }
+
+    .partner-brand svg {
+      width: 32px;
+      height: 32px;
+      color: inherit;
+    }
+
+    .partner-brand span {
       font-family: var(--font-head);
-      font-size: 1.0rem;
+      font-size: 1.15rem;
       font-weight: 800;
-      color: var(--gray-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      transition: color 0.3s;
-      cursor: default;
+      letter-spacing: -0.02em;
     }
-
-    .partner-logo:hover { color: var(--text-light); }
 
     /* ─────────────────────────────────────
        CTA BANNER
@@ -2164,14 +2197,75 @@
   ════════════════════════════════════════ -->
   <section id="partners">
     <div class="container">
-      <p class="partners-label">Trusted by Leading Companies Worldwide</p>
-      <div class="partners-row">
-        <div class="partner-logo">Global Corp</div>
-        <div class="partner-logo">TradeHub Africa</div>
-        <div class="partner-logo">EuroTrade Ltd</div>
-        <div class="partner-logo">AsiaPac Imports</div>
-        <div class="partner-logo">MedSupply Co</div>
-        <div class="partner-logo">FreightLink Int'l</div>
+      <p class="partners-label">Trusted by Global Industry Leaders</p>
+      
+      <div class="marquee-wrapper">
+        <div class="marquee-content">
+          <!-- Logo 1 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>GlobalCorp</span>
+          </div>
+          <!-- Logo 2 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/></svg>
+            <span>TradeHub</span>
+          </div>
+          <!-- Logo 3 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span>EuroTrade</span>
+          </div>
+          <!-- Logo 4 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span>AsiaPac</span>
+          </div>
+          <!-- Logo 5 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+            <span>MedSupply</span>
+          </div>
+          <!-- Logo 6 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <span>FreightLink</span>
+          </div>
+        </div>
+        
+        <!-- Duplicate for infinite scrolling effect -->
+        <div class="marquee-content" aria-hidden="true">
+          <!-- Logo 1 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>GlobalCorp</span>
+          </div>
+          <!-- Logo 2 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/></svg>
+            <span>TradeHub</span>
+          </div>
+          <!-- Logo 3 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span>EuroTrade</span>
+          </div>
+          <!-- Logo 4 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span>AsiaPac</span>
+          </div>
+          <!-- Logo 5 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+            <span>MedSupply</span>
+          </div>
+          <!-- Logo 6 -->
+          <div class="partner-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <span>FreightLink</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
