@@ -1176,18 +1176,16 @@ async function handleUpdateWithEmail(shipmentData, shouldNotify) {
     try {
       const htmlBody = getEmailTemplate({ tracking_number, status, status_reason, updated_at: isoDate });
       
-      const res = await fetch("https://corsproxy.io/?https://api.resend.com/emails", {
+      const res = await fetch("/api/send-email", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer re_N5op6iVA_5uKVo2oXyaWSjM89zQpifYo5",
-          "Content-Type": "application/json",
-          "x-requested-with": "XMLHttpRequest"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          from: "PrimeLogistics Trace <contact@primelogisticstrace.com>",
-          to: client_email,
-          subject: `Shipment Update: ${tracking_number} — ${status}`,
-          html: htmlBody
+          client_email,
+          tracking_number,
+          status,
+          htmlBody
         })
       });
 
