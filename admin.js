@@ -266,7 +266,7 @@ function mountDashboard() {
 }
 
 function adminLogout() {
-  sessionStorage.removeItem('gft_cmd');
+  sessionStorage.removeItem('plt_cmd');
   location.reload();
 }
 
@@ -276,7 +276,7 @@ function togglePwd() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  if (sessionStorage.getItem('gft_cmd') === '1') mountDashboard();
+  if (sessionStorage.getItem('plt_cmd') === '1') mountDashboard();
 });
 
 // -------------------------------------
@@ -1085,10 +1085,10 @@ async function quickStatus(status) {
 // ── Unmissable result dialog ────────────────────────────────────────────────
 function showEmailResultDialog({ success, email, tracking, errMsg }) {
   // Remove any existing dialog
-  document.getElementById('gft-email-result-dialog')?.remove();
+  document.getElementById('plt-email-result-dialog')?.remove();
 
   const dlg = document.createElement('div');
-  dlg.id = 'gft-email-result-dialog';
+  dlg.id = 'plt-email-result-dialog';
   dlg.style.cssText = [
     'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;',
     'background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);padding:24px;'
@@ -1101,7 +1101,7 @@ function showEmailResultDialog({ success, email, tracking, errMsg }) {
        📬 <strong>Please check the Inbox AND the Spam/Junk folder</strong> — emails from new senders sometimes land in spam the first time.`
     : `Status was saved to the database, but the email could not be sent.<br><br>
        <strong>Error:</strong> <code style="color:#f87171">${errMsg || 'Unknown error'}</code><br><br>
-       Check the browser Console (F12 → Console) for details tagged <code>[GFT]</code>.`;
+       Check the browser Console (F12 → Console) for details tagged <code>[PLT]</code>.`;
   const btnColor = success ? '#22c55e' : '#ef4444';
 
   dlg.innerHTML = `
@@ -1112,7 +1112,7 @@ function showEmailResultDialog({ success, email, tracking, errMsg }) {
       <h3 style="color:#fff;font-size:20px;font-weight:700;margin:0 0 12px;">${title}</h3>
       <p style="color:rgba(255,255,255,0.65);font-size:14px;line-height:1.7;margin:0 0 28px;">${body}</p>
       <p style="color:rgba(255,255,255,0.35);font-size:12px;margin:0 0 24px;">Shipment: <strong style="color:#FF8C00">${tracking}</strong></p>
-      <button onclick="document.getElementById('gft-email-result-dialog').remove()"
+      <button onclick="document.getElementById('plt-email-result-dialog').remove()"
               style="background:${btnColor};color:#fff;font-weight:700;font-size:14px;
                      border:none;padding:12px 40px;border-radius:12px;cursor:pointer;
                      width:100%;transition:opacity 0.2s;"
@@ -1194,11 +1194,11 @@ async function handleUpdateWithEmail(shipmentData, shouldNotify) {
         showEmailResultDialog({ success: true, email: client_email, tracking: tracking_number });
       } else {
         const errorText = await res.text();
-        console.error('[GFT] ✗ Email send failed:', errorText);
+        console.error('[PLT] ✗ Email send failed:', errorText);
         showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: `Resend API Error: ${res.status}` });
       }
     } catch (fetchErr) {
-      console.error('[GFT] ✗ Network/CORS error:', fetchErr);
+      console.error('[PLT] ✗ Network/CORS error:', fetchErr);
       log(`⚠️ ${tracking_number}: network error sending email`);
       showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: fetchErr.message || 'Network error — check console' });
     }
@@ -1444,7 +1444,7 @@ document.getElementById('create-shipment-form')?.addEventListener('submit', asyn
 function autoGenId() {
   const y = new Date().getFullYear();
   const r = String(Math.floor(Math.random()*900)+100);
-  document.getElementById('cs-tracking').value = `GFT-${y}-${r}`;
+  document.getElementById('cs-tracking').value = `PLT-${y}-${r}`;
 }
 // Alias used by admin.html button
 const generateTrackingId = autoGenId;
@@ -1753,4 +1753,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('%c?? GFT Command Centre', 'color:#FF8C00;font-size:16px;font-weight:bold;');
+console.log('%c🚀 PLT Command Centre', 'color:#FF8C00;font-size:16px;font-weight:bold;');
