@@ -1562,20 +1562,36 @@ document.getElementById('milestone-form')?.addEventListener('submit', async e =>
   const message = document.getElementById('ms-message').value.trim();
   const location_name = document.getElementById('ms-location').value.trim() || null;
   const msg = document.getElementById('milestone-result');
-  if (!shipId||!message) { showFormMsg(msg, '? Select a shipment and enter a message.', false); return; }
-  const { error } = await db.from('milestones').insert([{ shipment_id:shipId, message, location_name, timestamp:new Date().toISOString() }]);
-  if (error) { showFormMsg(msg, '? ' + error.message, false); }
+
+  // Read optional custom timestamp — if blank, use current time
+  const tsInput = document.getElementById('ms-timestamp').value;
+  const timestamp = tsInput ? new Date(tsInput).toISOString() : new Date().toISOString();
+
+  if (!shipId||!message) { showFormMsg(msg, '⚠️ Select a shipment and enter a message.', false); return; }
+  const { error } = await db.from('milestones').insert([{ shipment_id:shipId, message, location_name, timestamp }]);
+  if (error) { showFormMsg(msg, '❌ ' + error.message, false); }
   else {
-    showFormMsg(msg, '? Milestone pushed � visible instantly on customer tracking page!', true);
+    const tsLabel = tsInput ? new Date(tsInput).toLocaleString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }) : 'Now';
+    showFormMsg(msg, `✅ Milestone pushed with timestamp: ${tsLabel} — visible instantly on customer tracking page!`, true);
     document.getElementById('ms-message').value = '';
     document.getElementById('ms-location').value = '';
-    toast('??? Milestone sent to customer!');
+    document.getElementById('ms-timestamp').value = '';
+    toast('📍 Milestone sent to customer!');
   }
 });
 
 function setTpl(text) { document.getElementById('ms-message').value = text; }
 // Alias used in admin.html onclick
 const setMilestoneTemplate = setTpl;
+
+// Helper: fill the timestamp field with the current local date/time
+function setMilestoneTimestampNow() {
+  const now = new Date();
+  // Format as "YYYY-MM-DDTHH:MM" which is what datetime-local input expects
+  const pad = n => String(n).padStart(2, '0');
+  const localISO = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  document.getElementById('ms-timestamp').value = localISO;
+}
 
 // -------------------------------------
 // REALTIME
