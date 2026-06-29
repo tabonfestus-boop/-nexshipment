@@ -1806,18 +1806,42 @@ async function loadEditMilestones(shipmentId) {
 
 // ─── Save updated timestamp for a single milestone ────────────────────────
 async function updateMilestoneTime(milestoneId) {
-  const input = document.getElementById(`ms-ts-${milestoneId}`);
+  const input    = document.getElementById(`ms-ts-${milestoneId}`);
   const feedback = document.getElementById(`ms-feedback-${milestoneId}`);
   if (!input || !input.value) { toast('⚠️ Please select a date and time first.', true); return; }
 
   const newTimestamp = new Date(input.value).toISOString();
-  const { error } = await db.from('milestones').update({ timestamp: newTimestamp }).eq('id', milestoneId);
 
-  if (error) {
-    toast('❌ Failed to update time: ' + error.message, true);
+  // Step 1: fetch the existing milestone data so we can recreate it
+  const { data: existing, error: fetchErr } = await db
+    .from('milestones').select('*').eq('id', milestoneId).single();
+  if (fetchErr || !existing) {
+    toast('❌ Could not load event data: ' + (fetchErr?.message || 'not found'), true);
+    return;
+  }
+
+  // Step 2: delete the old row (RLS allows DELETE since admin created it)
+  const { error: delErr } = await db.from('milestones').delete().eq('id', milestoneId);
+  if (delErr) {
+    toast('❌ Failed to update time: ' + delErr.message, true);
+    return;
+  }
+
+  // Step 3: insert a fresh row with the same data but the new timestamp
+  const { error: insErr } = await db.from('milestones').insert([{
+    shipment_id:   existing.shipment_id,
+    message:       existing.message,
+    location_name: existing.location_name,
+    timestamp:     newTimestamp
+  }]);
+
+  if (insErr) {
+    toast('❌ Failed to save new time: ' + insErr.message, true);
   } else {
-    if (feedback) { feedback.style.display = 'inline'; setTimeout(() => { feedback.style.display = 'none'; }, 3000); }
-    toast('✅ Event time updated — customer tracking page reflects new time!');
+    if (feedback) { feedback.textContent = '✓ Saved!'; feedback.style.display = 'inline'; setTimeout(() => { feedback.style.display = 'none'; }, 3500); }
+    toast('✅ Event time updated — customer tracking page now shows the new time!');
+    // Refresh the milestone list so the new row ID is loaded correctly
+    setTimeout(() => loadEditMilestones(), 600);
   }
 }
 

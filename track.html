@@ -695,8 +695,8 @@
 
     let loc = '—';
     if (milestones && milestones.length > 0) {
-      const latestLoc = milestones.find(m => m.location);
-      if (latestLoc) loc = latestLoc.location;
+      const latestLoc = milestones.find(m => m.location_name);
+      if (latestLoc) loc = latestLoc.location_name;
     }
     if (loc === '—') {
       if (s.status === 'Delivered') loc = s.destination_country || s.destination;
@@ -852,9 +852,30 @@
       .subscribe();
 
     milestonesChannel = db.channel(`track-mile-${shipmentId}`)
-      .on('postgres_changes', { event:'INSERT', schema:'public', table:'milestones', filter:`shipment_id=eq.${shipmentId}` }, payload => {
-        prependMilestone(payload.new);
-        showToast('🗺️ New tracking update received!');
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'milestones', filter: `shipment_id=eq.${shipmentId}` }, async () => {
+        // Re-fetch ALL milestones so list is always in correct timestamp order
+        const { data: fresh } = await db
+          .from('milestones').select('*')
+          .eq('shipment_id', shipmentId)
+          .order('timestamp', { ascending: false });
+        if (fresh) renderMilestones(fresh);
+        showToast('📋 Tracking update received!');
+      })
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'milestones', filter: `shipment_id=eq.${shipmentId}` }, async () => {
+        // Re-fetch and re-render when any milestone is updated
+        const { data: fresh } = await db
+          .from('milestones').select('*')
+          .eq('shipment_id', shipmentId)
+          .order('timestamp', { ascending: false });
+        if (fresh) renderMilestones(fresh);
+      })
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'milestones', filter: `shipment_id=eq.${shipmentId}` }, async () => {
+        // Re-fetch after a deletion so removed events disappear immediately
+        const { data: fresh } = await db
+          .from('milestones').select('*')
+          .eq('shipment_id', shipmentId)
+          .order('timestamp', { ascending: false });
+        if (fresh) renderMilestones(fresh);
       })
       .subscribe();
   }
