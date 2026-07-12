@@ -1048,6 +1048,11 @@
       const diff = Math.floor((Date.now() - new Date(shipment.updated_at)) / 60000);
       strip.textContent = `Updated ${diff < 1 ? 'just now' : diff + 'm ago'}`;
     }
+
+    // Fix grey map issue: force Leaflet to recalculate container size after rendering
+    setTimeout(() => {
+      if (_map) _map.invalidateSize();
+    }, 400);
   }
 
   /* ── Render route stops on the Leaflet map ───────────────── */
