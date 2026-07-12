@@ -1,30 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PrimeLogistics Trace — Premium Global Shipping & Logistics</title>
-  <meta name="description" content="PrimeLogistics Trace offers world-class air freight, sea freight, road transport and warehousing solutions. Real-time shipment tracking across 192+ countries."/>
+  <title>Nexshipment — Premium Global Shipping & Logistics</title>
+  <meta name="description" content="Nexshipment offers world-class air freight, sea freight, road transport and warehousing solutions. Real-time shipment tracking across 192+ countries."/>
   <meta name="keywords" content="global freight, logistics, shipping, cargo tracking, air freight, sea freight, warehousing, courier service"/>
-  <link rel="icon" href="Logo.png"/>
+  <link rel="icon" href="Logo.jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     /* ================================================
-       PrimeLogistics Trace — PREMIUM LOGISTICS SITE
+       Nexshipment — PREMIUM LOGISTICS SITE
        Inspired by pluzcargo.com interface
     ================================================ */
     :root {
-      --orange:       #2563EB;
-      --orange-dark:  #1D4ED8;
-      --orange-light: #3B82F6;
-      --navy:         #0B1437;
-      --navy-light:   #162050;
+      --orange:       #F97316;
+      --orange-dark:  #EA580C;
+      --orange-light: #FB923C;
+      --navy:         #0A192F;
+      --navy-light:   #112240;
       --white:        #FFFFFF;
-      --gray-light:   #F5F7FA;
+      --gray-light:   #F4F6F9;
       --gray-mid:     #E8ECF0;
-      --text-dark:    #1A2340;
+      --text-dark:    #0A192F;
       --text-mid:     #4A5568;
       --text-light:   #718096;
       --font-head:    'Montserrat', sans-serif;
@@ -50,7 +50,7 @@
     body {
       font-family: var(--font-body);
       color: var(--text-dark);
-      background: var(--white);
+      background: var(--gray-light);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -139,7 +139,7 @@
       top: 0;
       left: 0; right: 0;
       z-index: 150;
-      background: rgba(11, 20, 55, 0.95);
+      background: rgba(10, 25, 47, 0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -212,7 +212,7 @@
       white-space: nowrap;
     }
 
-    .nav-link:hover { color: var(--orange); background: rgba(37,99,235,0.05); }
+    .nav-link:hover { color: var(--orange); background: rgba(249, 115, 22,0.05); }
     .nav-link.active { color: var(--orange); }
 
     .nav-link.has-dropdown { cursor: pointer; }
@@ -267,7 +267,7 @@
       background: var(--orange-dark);
       border-color: var(--orange-dark);
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+      box-shadow: 0 6px 20px rgba(249, 115, 22,0.3);
     }
 
     /* Mobile hamburger */
@@ -292,7 +292,7 @@
     /* Mobile nav */
     #mobile-nav {
       display: none;
-      background: rgba(11, 20, 55, 0.98);
+      background: rgba(10, 25, 47, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -342,11 +342,12 @@
       position: absolute;
       inset: 0;
       opacity: 0;
-      transition: opacity 1s ease;
+      transform: scale(1.02);
+      transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1;
     }
 
-    .slide.active { opacity: 1; z-index: 2; }
+    .slide.active { opacity: 1; transform: scale(1.0); z-index: 2; }
 
     /* Image slide background */
     .slide-img-bg {
@@ -364,16 +365,20 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 8s ease;
     }
+    
+    .slide.active .slide-video { transform: scale(1.0); }
 
     /* Dark overlay */
     .slide-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         100deg,
-        rgba(11,20,55,0.88) 0%,
-        rgba(11,20,55,0.65) 50%,
-        rgba(11,20,55,0.3) 100%
+        rgba(10, 25, 47,0.88) 0%,
+        rgba(10, 25, 47,0.65) 50%,
+        rgba(10, 25, 47,0.3) 100%
       );
       z-index: 1;
     }
@@ -476,7 +481,7 @@
       background: var(--orange-dark);
       border-color: var(--orange-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+      box-shadow: 0 8px 24px rgba(249, 115, 22,0.35);
     }
 
     .slide-btn-secondary {
@@ -556,59 +561,69 @@
     }
 
     .tw-card {
-      background: white;
-      max-width: 900px;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      max-width: 820px;
       margin: 0 auto;
-      border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      padding: 45px 50px;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+      padding: 56px 64px;
       text-align: center;
+      transform: translateY(-30px);
     }
 
     .tw-card h2 {
       font-family: var(--font-head);
-      font-size: 1.8rem;
+      font-size: 2.1rem;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
     }
 
     .tw-card p {
-      font-size: 0.95rem;
-      color: #64748b; /* A clean gray */
-      margin-bottom: 28px;
+      font-size: 1.05rem;
+      color: #64748b;
+      margin-bottom: 36px;
     }
 
     .tw-form-simple {
       display: flex;
-      gap: 12px;
-      max-width: 700px;
+      align-items: center;
+      max-width: 640px;
       margin: 0 auto;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 50px;
+      padding: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+    
+    .tw-form-simple:focus-within {
+      border-color: var(--orange);
+      box-shadow: 0 12px 32px rgba(249, 115, 22, 0.15);
+      transform: translateY(-2px);
     }
 
     .tw-input-simple {
       flex: 1;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding: 18px 20px;
+      border: none;
+      background: transparent;
+      padding: 0 24px;
       font-family: var(--font-body);
       font-size: 1.05rem;
       color: var(--navy);
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .tw-input-simple:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
     }
 
     .tw-input-simple::placeholder {
       color: #94a3b8;
+      font-weight: 400;
     }
 
     #hero-track-btn {
-      background: var(--orange);
       color: white;
       border: none;
       border-radius: 6px;
@@ -758,9 +773,9 @@
 
     .stepper-item { display: flex; gap: 14px; padding-bottom: 20px; position: relative; }
     .stepper-item:not(:last-child)::before { content: ''; position: absolute; left: 17px; top: 36px; bottom: 0; width: 1.5px; background: var(--gray-mid); }
-    .stepper-item.active::before, .stepper-item.completed::before { background: linear-gradient(180deg, var(--orange), rgba(37,99,235,0.2)); }
+    .stepper-item.active::before, .stepper-item.completed::before { background: linear-gradient(180deg, var(--orange), rgba(249, 115, 22,0.2)); }
     .stepper-dot { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--gray-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: white; transition: var(--transition); }
-    .stepper-item.active    .stepper-dot { border-color: var(--orange); background: rgba(37,99,235,0.08); }
+    .stepper-item.active    .stepper-dot { border-color: var(--orange); background: rgba(249, 115, 22,0.08); }
     .stepper-item.completed .stepper-dot { border-color: #16a34a; background: rgba(22,163,74,0.08); }
     .stepper-content  { flex: 1; padding-top: 6px; }
     .stepper-title    { font-weight: 700; color: var(--text-dark); font-size: 0.85rem; font-family: var(--font-head); }
@@ -874,7 +889,7 @@
     }
 
     .service-card:hover {
-      border-color: rgba(37,99,235,0.2);
+      border-color: rgba(249, 115, 22,0.2);
       box-shadow: 0 16px 48px rgba(0,0,0,0.1);
       transform: translateY(-5px);
     }
@@ -883,7 +898,7 @@
 
     .svc-icon-wrap {
       width: 64px; height: 64px;
-      background: rgba(37,99,235,0.08);
+      background: rgba(249, 115, 22,0.08);
       border-radius: var(--radius-lg);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 22px;
@@ -943,14 +958,14 @@
     }
 
     .why-card:hover {
-      border-color: rgba(37,99,235,0.15);
+      border-color: rgba(249, 115, 22,0.15);
       box-shadow: 0 12px 36px rgba(0,0,0,0.1);
       transform: translateY(-3px);
     }
 
     .why-icon {
       width: 52px; height: 52px;
-      background: rgba(37,99,235,0.1);
+      background: rgba(249, 115, 22,0.1);
       border-radius: var(--radius);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
@@ -1031,7 +1046,7 @@
       letter-spacing: 0.08em;
     }
 
-    .impact-icon { margin: 0 auto 14px; color: rgba(37,99,235,0.4); }
+    .impact-icon { margin: 0 auto 14px; color: rgba(249, 115, 22,0.4); }
 
     /* ─────────────────────────────────────
        PERFORMANCE / BADGES
@@ -1091,7 +1106,7 @@
       border: 1px solid var(--gray-mid);
     }
 
-    .badge-card:hover { border-color: var(--orange); background: rgba(37,99,235,0.03); }
+    .badge-card:hover { border-color: var(--orange); background: rgba(249, 115, 22,0.03); }
 
     .badge-icon {
       width: 52px; height: 52px;
@@ -1141,7 +1156,7 @@
       transform: scale(1.15) rotate(4deg);
     }
 
-    .testi-card:hover { box-shadow: var(--shadow-md); border-color: rgba(37,99,235,0.15); transform: translateY(-4px); }
+    .testi-card:hover { box-shadow: var(--shadow-md); border-color: rgba(249, 115, 22,0.15); transform: translateY(-4px); }
 
     .testi-stars {
       display: flex; gap: 3px; margin-bottom: 16px;
@@ -1268,7 +1283,7 @@
       top: -100px; right: -100px;
       width: 400px; height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(249, 115, 22,0.12) 0%, transparent 70%);
     }
 
     #cta-banner::after {
@@ -1277,7 +1292,7 @@
       bottom: -80px; left: -80px;
       width: 300px; height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(249, 115, 22,0.07) 0%, transparent 70%);
     }
 
     .cta-inner {
@@ -1326,7 +1341,7 @@
       background: var(--orange-dark);
       border-color: var(--orange-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(37,99,235,0.4);
+      box-shadow: 0 8px 28px rgba(249, 115, 22,0.4);
     }
 
     .cta-btn-secondary {
@@ -1578,7 +1593,7 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
-      box-shadow: 0 6px 24px rgba(37,99,235,0.4);
+      box-shadow: 0 6px 24px rgba(249, 115, 22,0.4);
       transition: var(--transition);
       margin-left: auto;
       position: relative;
@@ -1681,9 +1696,41 @@
       #hamburger { display: flex; margin-left: auto; }
       .slide-h1 { font-size: clamp(1.8rem, 8vw, 2.2rem); max-width: 100%; }
       .slide-sub { font-size: 0.95rem; }
-      .tw-card { padding: 30px 20px; }
-      .tw-form-simple { flex-direction: column; }
-      #hero-track-btn { width: 100%; justify-content: center; }
+      .tw-card { padding: 32px 20px; transform: translateY(-16px); border-radius: 24px; }
+      .tw-card h2 { font-size: 1.8rem; letter-spacing: -0.02em; margin-bottom: 8px; }
+      .tw-card p { font-size: 0.95rem; margin-bottom: 24px; }
+      .tw-form-simple { 
+        flex-direction: column; 
+        background: transparent; 
+        border: none; 
+        box-shadow: none; 
+        padding: 0; 
+        border-radius: 0; 
+        gap: 12px;
+      }
+      .tw-form-simple:focus-within { box-shadow: none; transform: none; }
+      .tw-input-simple { 
+        width: 100%; 
+        border: 1.5px solid #E2E8F0; 
+        border-radius: 16px; 
+        padding: 18px 20px; 
+        font-size: 1rem;
+        background: white;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+      }
+      .tw-input-simple:focus {
+        border-color: var(--orange);
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+      }
+      #hero-track-btn { 
+        width: 100%; 
+        height: 56px; 
+        border-radius: 16px; 
+        justify-content: center; 
+        font-size: 1.05rem;
+        box-sizing: border-box;
+      }
       .tracking-widget-inner { grid-template-columns: 1fr; gap: 1rem; }
       .tw-phone { display: none; }
       .services-grid  { grid-template-columns: 1fr; }
@@ -1712,6 +1759,372 @@
       .t-actions { flex-direction: column; }
     }
   </style>
+
+  <style>
+    
+  .theme-switch-wrapper {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+  .theme-switch-track {
+    width: 48px;
+    height: 26px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    position: relative;
+    transition: background 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .theme-switch-track:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+  .theme-switch-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  .ts-moon, .ts-sun {
+    width: 11px;
+    height: 11px;
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    position: absolute;
+    transition: opacity 0.3s, transform 0.4s;
+  }
+  .ts-sun { opacity: 0; transform: rotate(-90deg); }
+  
+  body.dark-mode .theme-switch-track {
+    background: rgba(249, 115, 22, 0.2); 
+    border-color: var(--orange);
+  }
+  body.dark-mode .theme-switch-thumb {
+    transform: translateX(20px);
+    background: var(--orange);
+  }
+  body.dark-mode .ts-moon { opacity: 0; transform: rotate(90deg); }
+  body.dark-mode .ts-sun { opacity: 1; transform: rotate(0); stroke: #ffffff; }
+
+  /* Final text overrides to ensure total perfection */
+  body.dark-mode p { color: #cbd5e1 !important; }
+  body.dark-mode h3 { color: #f8fafc !important; }
+  body.dark-mode h4 { color: #f8fafc !important; }
+  body.dark-mode .section-desc { color: #94a3b8 !important; }
+
+    /* Removed old button CSS */
+
+    .theme-toggle-btn {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.85);
+      background: none;
+      transition: var(--transition);
+      margin-right: 4px;
+    }
+    .theme-toggle-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ============================================
+       THEME SYSTEM — DARK MODE & LIGHT MODE
+    ============================================ */
+
+    /* DARK MODE — applied when class 'dark-mode' is on body */
+    body.dark-mode {
+      --bg: #0f172a;
+      --bg-alt: #1e293b;
+      --gray-light: #1e293b;
+      --gray-mid: #334155;
+      --navy: #f8fafc;
+      --text-dark: #f8fafc;
+      --text-mid: #cbd5e1;
+      --text-light: #94a3b8;
+      background-color: var(--bg);
+      color: #cbd5e1;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    /* White-background sections in Dark Mode */
+    body.dark-mode .section-gray { background-color: var(--bg-alt) !important; }
+    body.dark-mode .service-card,
+    body.dark-mode .testi-card,
+    body.dark-mode .marquee-review-card,
+    body.dark-mode .acc-item,
+    body.dark-mode .ss-dropdown,
+    body.dark-mode .service-showcase { background-color: #1e293b !important; border-color: #334155 !important; }
+    body.dark-mode .acc-header { background-color: transparent !important; }
+    body.dark-mode .ss-header { background-color: #1e293b !important; border-color: #334155 !important; }
+    body.dark-mode .ss-header:hover { background-color: #334155 !important; }
+    body.dark-mode .reviews-marquee-container::before { background: linear-gradient(to right, var(--bg-alt) 0%, transparent 100%) !important; }
+    body.dark-mode .reviews-marquee-container::after { background: linear-gradient(to left, var(--bg-alt) 0%, transparent 100%) !important; }
+    body.dark-mode .nav-link { color: #cbd5e1 !important; }
+    body.dark-mode p { color: #cbd5e1 !important; }
+    body.dark-mode h3 { color: #f8fafc !important; }
+    body.dark-mode h4 { color: #f8fafc !important; }
+    body.dark-mode .mr-text { color: #cbd5e1 !important; }
+    body.dark-mode .mr-company { color: #94a3b8 !important; }
+    body.dark-mode .ss-text p { color: #cbd5e1 !important; }
+    body.dark-mode .ss-option { color: #cbd5e1 !important; }
+    body.dark-mode .ss-option:hover { color: var(--orange) !important; }
+    body.dark-mode .ss-current { color: #f8fafc !important; }
+    body.dark-mode .ss-label { color: #94a3b8 !important; }
+    body.dark-mode .section-desc { color: #94a3b8 !important; }
+    body.dark-mode .testi-text { color: #cbd5e1 !important; }
+    body.dark-mode .svc-desc { color: #cbd5e1 !important; }
+    body.dark-mode .footer-text { color: #94a3b8 !important; }
+    body.dark-mode .stat-label { color: #94a3b8 !important; }
+    body.dark-mode .nav-logo-name { color: #f8fafc !important; }
+    body.dark-mode .section-h2 { color: #f8fafc !important; }
+    body.dark-mode .section-eyebrow { color: var(--orange) !important; }
+    body.dark-mode .acc-title { color: #f8fafc !important; }
+    body.dark-mode .mr-name { color: #f8fafc !important; }
+
+    /* -----------------------------------------------
+       LIGHT MODE — override sections that are hardcoded
+       dark (inline style="color:white" etc.)
+    ----------------------------------------------- */
+
+    /* The global-network dark section and anything else with hardcoded dark bg */
+    body.light-mode #global-network,
+    body.light-mode #global-network h2,
+    body.light-mode #global-network span,
+    body.light-mode #global-network p {
+      /* Keep dark-bg sections as-is — they're intentional design */
+    }
+
+    /* Text on white-background sections that was made dark via variables */
+    body.light-mode .section-h2 { color: var(--navy) !important; }
+    body.light-mode .section-desc { color: var(--text-mid) !important; }
+    body.light-mode p { color: var(--text-dark); }
+    body.light-mode h3 { color: var(--navy); }
+    body.light-mode h4 { color: var(--navy); }
+    body.light-mode .mr-name { color: var(--navy) !important; }
+    body.light-mode .mr-company { color: var(--text-light) !important; }
+    body.light-mode .mr-text { color: var(--text-mid) !important; }
+    body.light-mode .acc-title { color: var(--navy) !important; }
+    body.light-mode .ss-current { color: var(--navy) !important; }
+    body.light-mode .ss-label { color: var(--text-light) !important; }
+    body.light-mode .ss-text p { color: var(--text-mid) !important; }
+    body.light-mode .ss-option { color: var(--navy) !important; }
+    body.light-mode .svc-desc { color: var(--text-mid) !important; }
+    body.light-mode .service-card { background: #fff !important; border-color: var(--gray-mid) !important; }
+    body.light-mode .marquee-review-card { background: #fff !important; }
+    body.light-mode .acc-item { background: #fff !important; }
+    body.light-mode .ss-dropdown { background: #fff !important; }
+    body.light-mode .section-gray { background-color: #F4F6F9 !important; }
+    body.light-mode .nav-link { color: rgba(255,255,255,0.85) !important; }
+
+  /* ── Language Selector ─────────────────────────── */
+  .lang-selector {
+    position: relative;
+  }
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 40px;
+    padding: 7px 14px 7px 10px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.9);
+    transition: all 0.25s;
+    white-space: nowrap;
+    margin-right: 4px;
+  }
+  .lang-btn:hover {
+    background: rgba(249,115,22,0.15);
+    border-color: var(--orange);
+    color: white;
+  }
+  .lang-globe {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .lang-current {
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .lang-chevron {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .lang-selector.open .lang-chevron {
+    transform: rotate(180deg);
+  }
+  .lang-selector.open .lang-btn {
+    background: rgba(249,115,22,0.15);
+    border-color: var(--orange);
+  }
+
+  /* Dropdown */
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 4px 15px rgba(0,0,0,0.08);
+    min-width: 210px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.97);
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    z-index: 9999;
+  }
+  .lang-selector.open .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  .lang-menu-header {
+    padding: 14px 18px 10px;
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    font-family: var(--font-body);
+  }
+  .lang-option:hover {
+    background: rgba(249,115,22,0.06);
+    color: var(--orange);
+  }
+  .lang-flag {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  /* Hide Google Translate bar */
+  .goog-te-banner-frame, .skiptranslate { display: none !important; }
+  body { top: 0 !important; }
+  .goog-te-gadget { display: none !important; }
+</style>
+  <script>
+    /* ── Language Selector ── */
+    function toggleLangMenu(e) {
+      e.stopPropagation();
+      document.getElementById('langSelector').classList.toggle('open');
+    }
+    document.addEventListener('click', function() {
+      const s = document.getElementById('langSelector');
+      if (s) s.classList.remove('open');
+    });
+
+    /* Pending language change — stored until the widget is ready */
+    var _pendingLang = null;
+
+    function setLang(code, label) {
+      document.getElementById('langCurrent').textContent = label;
+      document.getElementById('langSelector').classList.remove('open');
+      try { localStorage.setItem('nx_lang_label', label); } catch(e){}
+
+      if (code === 'en') {
+        /* Restore English: try clicking the "Show Original" restore link inside GT bar */
+        var restored = false;
+        try {
+          var frames = document.getElementsByTagName('iframe');
+          for (var i = 0; i < frames.length; i++) {
+            try {
+              var doc = frames[i].contentDocument || frames[i].contentWindow.document;
+              var restoreLink = doc.querySelector('[id="restore"]') || doc.querySelector('.goog-te-menu-value');
+              if (restoreLink) { restoreLink.click(); restored = true; break; }
+            } catch(e2) {}
+          }
+        } catch(e) {}
+        if (!restored) {
+          /* Fallback: set combo to blank (shows original) */
+          doTranslate('');
+        }
+        return;
+      }
+
+      /* Try immediately, else queue for after widget loads */
+      if (!doTranslate(code)) {
+        _pendingLang = code;
+      }
+    }
+
+    function doTranslate(code) {
+      /* Method 1: hidden combo select element that Google Translate injects */
+      var combo = document.querySelector('select.goog-te-combo');
+      if (combo) {
+        combo.value = code;
+        try { combo.dispatchEvent(new Event('change')); } catch(e) {}
+        try { combo.dispatchEvent(new Event('change', { bubbles: true })); } catch(e) {}
+        return true;
+      }
+      return false;
+    }
+
+    /* Restore button label after page reload */
+    (function() {
+      try {
+        var saved = localStorage.getItem('nx_lang_label');
+        if (saved) { var el = document.getElementById('langCurrent'); if (el) el.textContent = saved; }
+      } catch(e) {}
+    })();
+
+    /* Google Translate widget initializer */
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,ko,hi,tr',
+        autoDisplay: false,
+        gaTrack: false
+      }, 'google_translate_element');
+
+      /* Poll until the combo is injected into the DOM, then apply any pending language */
+      var attempts = 0;
+      var poll = setInterval(function() {
+        attempts++;
+        var combo = document.querySelector('select.goog-te-combo');
+        if (combo) {
+          clearInterval(poll);
+          if (_pendingLang) {
+            setTimeout(function() { doTranslate(_pendingLang); _pendingLang = null; }, 200);
+          }
+        }
+        if (attempts > 60) clearInterval(poll); /* give up after 6 seconds */
+      }, 100);
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
 
@@ -1728,7 +2141,7 @@
           </div>
           <div class="top-bar-item">
             <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            contact@primelogisticstrace.com
+            contact@nexshipment.com
           </div>
         </div>
         <div class="top-bar-right">
@@ -1759,7 +2172,7 @@
     <div class="container">
       <div class="nav-inner">
         <a href="index.html" class="nav-logo">
-          <img src="Logo.png" alt="PrimeLogistics Trace" style="height: 85px; object-fit: contain; background: rgba(255, 255, 255, 0.95); padding: 5px 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+          <img src="Logo.jpeg" alt="Nexshipment" style="height: 85px; object-fit: contain; background: rgba(255, 255, 255, 0.95); padding: 5px 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
         </a>
 
         <div class="nav-links" id="nav-links">
@@ -1771,6 +2184,37 @@
         </div>
 
         <div class="nav-right">
+
+          <!-- Language Translator -->
+          <div class="lang-selector" id="langSelector">
+            <button class="lang-btn" id="langBtn" aria-label="Select Language" onclick="toggleLangMenu(event)">
+              <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20"/>
+                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/>
+              </svg>
+              <span class="lang-current" id="langCurrent">EN</span>
+              <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="lang-menu" id="langMenu">
+              <div class="lang-menu-header">Select Language</div>
+              <div class="lang-option" onclick="setLang('en','EN')"><span class="lang-flag">🇺🇸</span> English</div>
+              <div class="lang-option" onclick="setLang('es','ES')"><span class="lang-flag">🇪🇸</span> Español</div>
+              <div class="lang-option" onclick="setLang('fr','FR')"><span class="lang-flag">🇫🇷</span> Français</div>
+              <div class="lang-option" onclick="setLang('de','DE')"><span class="lang-flag">🇩🇪</span> Deutsch</div>
+              <div class="lang-option" onclick="setLang('zh-CN','中文')"><span class="lang-flag">🇨🇳</span> 中文 (Chinese)</div>
+              <div class="lang-option" onclick="setLang('ar','AR')"><span class="lang-flag">🇸🇦</span> العربية</div>
+              <div class="lang-option" onclick="setLang('pt','PT')"><span class="lang-flag">🇧🇷</span> Português</div>
+              <div class="lang-option" onclick="setLang('ru','RU')"><span class="lang-flag">🇷🇺</span> Русский</div>
+              <div class="lang-option" onclick="setLang('ja','JA')"><span class="lang-flag">🇯🇵</span> 日本語</div>
+              <div class="lang-option" onclick="setLang('ko','KO')"><span class="lang-flag">🇰🇷</span> 한국어</div>
+              <div class="lang-option" onclick="setLang('hi','HI')"><span class="lang-flag">🇮🇳</span> हिन्दी</div>
+              <div class="lang-option" onclick="setLang('tr','TR')"><span class="lang-flag">🇹🇷</span> Türkçe</div>
+            </div>
+          </div>
+
+          <!-- Hidden Google Translate element -->
+          <div id="google_translate_element" style="display:none;"></div>
           <button class="nav-search-btn" aria-label="Search">
             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </button>
@@ -1798,10 +2242,10 @@
   ════════════════════════════════════════ -->
   <div id="hero-slider" role="region" aria-label="Hero Banner">
 
-    <!-- SLIDE 1 — VIDEO (Airplane Takeoff) -->
+    <!-- SLIDE 1 — VIDEO -->
     <div class="slide active" id="slide-0">
       <video class="slide-video" autoplay muted loop playsinline preload="auto">
-        <source src="airplane_takeoff.mp4#t=0,10" type="video/mp4"/>
+        <source src="Background%20video.mp4" type="video/mp4"/>
       </video>
       <div class="slide-overlay"></div>
       <div class="slide-content">
@@ -1823,9 +2267,11 @@
       </div>
     </div>
 
-    <!-- SLIDE 2 — hero1.jpeg -->
+    <!-- SLIDE 2 — VIDEO1 -->
     <div class="slide" id="slide-1">
-      <div class="slide-img-bg" style="background-image:url('hero1.jpeg')"></div>
+      <video class="slide-video" autoplay muted loop playsinline preload="auto">
+        <source src="Background%20video1.mp4" type="video/mp4"/>
+      </video>
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="container">
@@ -1846,9 +2292,11 @@
       </div>
     </div>
 
-    <!-- SLIDE 3 — download.jfif -->
+    <!-- SLIDE 3 — VIDEO2 -->
     <div class="slide" id="slide-2">
-      <div class="slide-img-bg" style="background-image:url('download.jfif')"></div>
+      <video class="slide-video" autoplay muted loop playsinline preload="auto">
+        <source src="Background%20video2.mp4" type="video/mp4"/>
+      </video>
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="container">
@@ -1869,11 +2317,9 @@
       </div>
     </div>
 
-    <!-- SLIDE 4 — shipping.mp4 -->
+    <!-- SLIDE 4 — IMAGE1 -->
     <div class="slide" id="slide-3">
-      <video class="slide-video" autoplay muted loop playsinline preload="auto">
-        <source src="shipping.mp4" type="video/mp4"/>
-      </video>
+      <div class="slide-img-bg" style="background-image:url('background%20image1.jfif')"></div>
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="container">
@@ -1894,6 +2340,30 @@
       </div>
     </div>
 
+    <!-- SLIDE 5 — IMAGE2 -->
+    <div class="slide" id="slide-4">
+      <div class="slide-img-bg" style="background-image:url('Background%20image2.jfif')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="container">
+          <div class="slide-tag">Secure & Guaranteed</div>
+          <h1 class="slide-h1">Commitment to<br/>Excellence</h1>
+          <p class="slide-sub">Our dedicated team works round the clock to ensure your goods are handled with utmost care and delivered safely.</p>
+          <div class="slide-btns">
+            <a href="#quote-section" class="slide-btn-primary">
+              Get a Quote
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#services" class="slide-btn-secondary">
+              Learn More
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrows (Hidden as requested) -->
     <!-- Arrows (Hidden as requested) -->
     <button class="slider-arrow" id="slider-prev" aria-label="Previous slide" style="display:none !important;">
       <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
@@ -1908,6 +2378,7 @@
       <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
       <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+      <button class="slider-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
     </div>
   </div>
 
@@ -1939,267 +2410,298 @@
     </div>
   </div>
 
-  <!-- GLOBAL NETWORK - 3D ROTATING GLOBE -->
-  <section id="global-network" style="background:var(--navy);padding:100px 0;position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;opacity:0.03;background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);background-size:40px 40px;"></div>
-    <div class="container" style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
-      <div style="text-align:center;max-width:700px;margin-bottom:60px;" class="reveal">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);padding:6px 14px;border-radius:30px;margin-bottom:20px;">
-          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;animation:ping 2s infinite;"></div>
-          <span style="color:#4ade80;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Live Operations Dashboard</span>
+  <!-- ════════════════════════════════════════
+       GLOBAL NETWORK - REAL 3D GLOBE
+  ════════════════════════════════════════ -->
+  <section id="global-network" style="background:linear-gradient(160deg,#010812 0%,#020c1a 60%,#040f20 100%);padding:80px 0 100px;position:relative;overflow:hidden;">
+
+    <canvas id="star-cv" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+
+    <div class="container" style="position:relative;z-index:2;">
+
+      <div style="text-align:center;max-width:680px;margin:0 auto 40px;" class="reveal">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);padding:7px 18px;border-radius:40px;margin-bottom:22px;">
+          <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 8px #22c55e;animation:ping 2s infinite;display:inline-block;"></span>
+          <span style="color:#4ade80;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;">Live Operations Dashboard</span>
         </div>
-        <h2 style="color:white;font-family:var(--font-head);font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:20px;">Global Network <span style="color:var(--orange);">In Motion</span></h2>
-        <p style="color:rgba(255,255,255,0.6);font-size:1.1rem;">Watch our active shipments moving across 192+ countries in real-time. Over 2,400 active flights and sea freight routes managed daily.</p>
+        <h2 style="color:white;font-family:var(--font-head);font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.08;margin-bottom:18px;">
+          Global Network <span style="color:var(--orange);">In Motion</span>
+        </h2>
+        <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;line-height:1.7;">
+          Real-time shipments across 192+ countries. Over 2,400 active flights and sea freight routes managed daily.
+        </p>
       </div>
-      <div style="position:relative;width:100%;max-width:960px;" class="reveal">
-        <canvas id="globe-canvas" style="width:100%;height:auto;display:block;border-radius:16px;"></canvas>
-        <div style="position:absolute;bottom:24px;right:24px;background:rgba(4,12,40,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);padding:18px 28px;border-radius:18px;display:flex;gap:24px;box-shadow:0 12px 40px rgba(0,0,0,0.6);">
-          <div>
-            <div style="font-family:var(--font-head);font-size:1.9rem;font-weight:900;color:white;line-height:1;">12,491</div>
-            <div style="font-size:0.62rem;color:var(--orange);text-transform:uppercase;letter-spacing:0.12em;font-weight:800;margin-top:5px;">Active Routes</div>
-          </div>
-          <div style="width:1px;background:rgba(255,255,255,0.12);"></div>
-          <div>
-            <div style="font-family:var(--font-head);font-size:1.9rem;font-weight:900;color:white;line-height:1;">192</div>
-            <div style="font-size:0.62rem;color:#4ade80;text-transform:uppercase;letter-spacing:0.12em;font-weight:800;margin-top:5px;">Countries</div>
+
+      <!-- Responsive Grid Layout -->
+      <div id="gn-layout" style="display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:center;max-width:1120px;margin:0 auto;">
+
+        <!-- Stats panel (Moved to LEFT for better UX flow, Globe on RIGHT) -->
+        <!-- Stats panel (Compact Layout) -->
+        <div style="display:flex;flex-direction:column;gap:12px;order:1;width:100%;max-width:480px;" id="gn-stats">
+          
+          <!-- Unified Master Card -->
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:20px 24px;backdrop-filter:blur(20px);">
+            
+            <!-- Header -->
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="width:6px;height:6px;background:#F97316;border-radius:50%;box-shadow:0 0 8px #F97316;animation:ping 1.5s infinite;"></span>
+                <span style="color:rgba(255,255,255,0.5);font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;">Live Network Pulse</span>
+              </div>
+            </div>
+
+            <!-- Primary Metrics (Routes & Countries) -->
+            <div style="display:flex;align-items:center;gap:40px;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:20px;">
+              <div>
+                <div style="font-family:var(--font-head);font-size:2rem;font-weight:900;color:white;line-height:1;letter-spacing:-0.02em;" id="live-routes">12,491</div>
+                <div style="font-size:0.6rem;color:var(--orange);text-transform:uppercase;letter-spacing:0.15em;font-weight:700;margin-top:6px;">Active Routes</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-head);font-size:2rem;font-weight:900;color:#4ade80;line-height:1;letter-spacing:-0.02em;">192</div>
+                <div style="font-size:0.6rem;color:#4ade80;text-transform:uppercase;letter-spacing:0.15em;font-weight:700;margin-top:6px;">Countries</div>
+              </div>
+            </div>
+
+            <!-- Secondary Metrics (4-col strip) -->
+            <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;margin-bottom:20px;">
+              <div>
+                <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:white;line-height:1;">2.4k+</div>
+                <div style="font-size:0.55rem;color:rgba(255,255,255,0.4);text-transform:uppercase;font-weight:700;margin-top:4px;">Flights</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:#60a5fa;line-height:1;">340</div>
+                <div style="font-size:0.55rem;color:rgba(255,255,255,0.4);text-transform:uppercase;font-weight:700;margin-top:4px;">Ports</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:#4ade80;line-height:1;">98%</div>
+                <div style="font-size:0.55rem;color:rgba(255,255,255,0.4);text-transform:uppercase;font-weight:700;margin-top:4px;">On-Time</div>
+              </div>
+              <div>
+                <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:white;line-height:1;">3.2d</div>
+                <div style="font-size:0.55rem;color:rgba(255,255,255,0.4);text-transform:uppercase;font-weight:700;margin-top:4px;">Transit</div>
+              </div>
+            </div>
+
+            <!-- Compact Corridors -->
+            <div style="background:rgba(0,0,0,0.2);border-radius:12px;padding:12px 16px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span style="color:rgba(255,255,255,0.72);font-size:0.75rem;"><span style="opacity:0.6;margin-right:4px;">🌍</span> London → Dubai</span>
+                <span style="color:var(--orange);font-size:0.7rem;font-weight:700;">248 pkg</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="color:rgba(255,255,255,0.72);font-size:0.75rem;"><span style="opacity:0.6;margin-right:4px;">🌎</span> New York → Paris</span>
+                <span style="color:var(--orange);font-size:0.7rem;font-weight:700;">312 pkg</span>
+              </div>
+            </div>
+
           </div>
         </div>
+
+        <!-- Globe wrapper -->
+        <div style="position:relative;display:flex;justify-content:center;align-items:center;order:2;width:100%;height:100%;min-height:400px;" id="gn-globe-wrap">
+          <div id="globe-3d" style="width:100%;height:100%;position:absolute;inset:0;display:flex;justify-content:center;align-items:center;"></div>
+        </div>
+
       </div>
     </div>
   </section>
+
+  <style>
+    @media (max-width:1024px){
+      #gn-layout{grid-template-columns:1fr!important; gap:50px;}
+      #gn-stats{order:2!important;}
+      #gn-globe-wrap{order:1!important; min-height:450px!important;}
+    }
+    @media (max-width:600px){
+      #gn-globe-wrap{min-height:320px!important;}
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script>
+  /* ── Starfield ─────────────────────────────── */
   (function(){
-    var cv=document.getElementById('globe-canvas');
+    var cv=document.getElementById('star-cv');
     if(!cv)return;
-    var cx=cv.getContext('2d');
-    var running=false, rafId=null;
-
-    // --- DATA ---
-    var HUBS=[
-      [40.71,-74.00,'NEW YORK'],
-      [51.51,-0.12,'LONDON'],
-      [-26.20,28.04,'JOHANNESBURG'],
-      [1.35,103.82,'SINGAPORE'],
-      [25.20,55.27,'DUBAI'],
-      [35.68,139.69,'TOKYO'],
-      [48.86,2.35,'PARIS'],
-      [19.43,-99.13,'MEXICO CITY']
-    ];
-    var ROUTES=[
-      [1,0,'#FF6600'],[1,2,'#FF8833'],[1,4,'#60a5fa'],
-      [3,4,'#FF6600'],[3,5,'#3b82f6'],[0,6,'#FF8833'],
-      [2,4,'#FF6600'],[5,3,'#60a5fa'],[7,0,'#3b82f6'],[6,4,'#FF6600']
-    ];
-
-    // Pre-build land dots ONCE (reduced density for performance)
-    var LAND=bld();
-
-    var rot=0,W,H,R,CX,CY;
-    var pr=ROUTES.map(function(){return Math.random();});
-    var sp=ROUTES.map(function(){return 0.0008+Math.random()*0.0007;});
-
-    // --- RESIZE ---
-    function rs(){
-      var dpr=Math.min(window.devicePixelRatio||1, 1.5); // cap dpr at 1.5
-      var rc=cv.parentElement.getBoundingClientRect();
-      W=Math.min(rc.width,960);H=W*0.6;
-      cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
-      cv.style.width=W+'px';cv.style.height=H+'px';
-      cx.setTransform(dpr,0,0,dpr,0,0);
-      R=H*0.44;CX=W*0.5;CY=H*0.5;
-    }
-    rs();
-    var resizeTimer;
-    window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(rs,200);});
-
-    // --- MATH ---
-    function v3(la,lo,r){
-      var p=(90-la)*Math.PI/180,t=(lo+r)*Math.PI/180;
-      return{x:Math.sin(p)*Math.cos(t),y:Math.cos(p),z:Math.sin(p)*Math.sin(t)};
-    }
-    function pj(v){return{x:CX+v.x*R,y:CY-v.y*R,z:v.z};}
-
-    // --- DRAW FUNCTIONS (no shadowBlur for performance) ---
-    function atm(){
-      var g=cx.createRadialGradient(CX,CY,R*0.88,CX,CY,R*1.4);
-      g.addColorStop(0,'rgba(37,99,235,0.10)');
-      g.addColorStop(0.7,'rgba(37,99,235,0.03)');
-      g.addColorStop(1,'rgba(0,0,0,0)');
-      cx.fillStyle=g;
-      cx.beginPath();cx.arc(CX,CY,R*1.4,0,Math.PI*2);cx.fill();
-      // dark side
-      var d=cx.createRadialGradient(CX+R*0.28,CY-R*0.15,R*0.05,CX,CY,R);
-      d.addColorStop(0,'rgba(0,0,0,0)');
-      d.addColorStop(0.82,'rgba(0,5,25,0)');
-      d.addColorStop(1,'rgba(0,5,25,0.6)');
-      cx.fillStyle=d;cx.beginPath();cx.arc(CX,CY,R,0,Math.PI*2);cx.fill();
-    }
-
-    function grid(){
-      cx.lineWidth=0.55;
-      var la,lo,f,vv,pp;
-      for(lo=0;lo<360;lo+=30){ // fewer lines = faster
-        cx.strokeStyle='rgba(37,99,235,0.16)';cx.beginPath();f=true;
-        for(la=-84;la<=84;la+=5){
-          vv=v3(la,lo,rot);if(vv.z<0){f=true;continue;}
-          pp=pj(vv);cx.globalAlpha=vv.z*0.5;
-          if(f){cx.moveTo(pp.x,pp.y);f=false;}else cx.lineTo(pp.x,pp.y);
-        }cx.stroke();
+    function paint(){
+      cv.width=cv.offsetWidth; cv.height=cv.offsetHeight;
+      var ctx=cv.getContext('2d');
+      ctx.clearRect(0,0,cv.width,cv.height);
+      for(var i=0;i<250;i++){
+        var x=Math.random()*cv.width, y=Math.random()*cv.height;
+        var r=Math.random()*1.2+0.2, a=Math.random()*0.6+0.1;
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,'+a.toFixed(2)+')';ctx.fill();
       }
-      for(la=-60;la<=60;la+=30){
-        cx.strokeStyle='rgba(37,99,235,0.12)';cx.beginPath();f=true;
-        for(lo=0;lo<=360;lo+=4){
-          vv=v3(la,lo,rot);if(vv.z<0){f=true;continue;}
-          pp=pj(vv);cx.globalAlpha=vv.z*0.4;
-          if(f){cx.moveTo(pp.x,pp.y);f=false;}else cx.lineTo(pp.x,pp.y);
-        }cx.stroke();
-      }
-      cx.globalAlpha=1;
+    }
+    paint(); window.addEventListener('resize',paint);
+  })();
+
+  /* ── Photorealistic 3D Globe ─────────────────────────── */
+  (function(){
+    var container = document.getElementById('globe-3d');
+    if(!container || typeof THREE==='undefined') return;
+
+    var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    camera.position.z = 3.2; // Move camera back for perfect framing
+
+    /* Professional Lighting Setup */
+    var ambient = new THREE.AmbientLight(0x223344, 0.8);
+    scene.add(ambient);
+    var dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
+    dirLight.position.set(-5, 3, 5); // Sun from top-left
+    scene.add(dirLight);
+    var fillLight = new THREE.DirectionalLight(0x112244, 1.2);
+    fillLight.position.set(5, -2, -3); // Cool blue fill from bottom-right
+    scene.add(fillLight);
+
+    function ll2v(lat,lng,r){
+      r=r||1;
+      var ph=(90-lat)*Math.PI/180;
+      var th=(lng+180)*Math.PI/180;
+      return new THREE.Vector3(-r*Math.sin(ph)*Math.cos(th), r*Math.cos(ph), r*Math.sin(ph)*Math.sin(th));
     }
 
-    function land(){
-      // Batch all dots into one path per alpha bucket for speed
-      var i,v,p,a,s;
-      for(i=0;i<LAND.length;i++){
-        v=v3(LAND[i][1],LAND[i][0],rot);
-        if(v.z<0)continue;
-        p=pj(v);
-        a=Math.pow(Math.max(0,v.z),0.55)*0.85;
-        s=1.1+v.z*0.85;
-        cx.globalAlpha=a;
-        cx.fillStyle='rgba(255,102,0,0.72)';
-        cx.beginPath();cx.arc(p.x,p.y,s,0,Math.PI*2);cx.fill();
+    /* Fallback high-res procedural texture */
+    function createFallbackTexture(){
+      var c=document.createElement('canvas');
+      c.width=2048; c.height=1024;
+      var g=c.getContext('2d');
+      // Dark blue ocean
+      g.fillStyle='#07142b'; g.fillRect(0,0,2048,1024);
+      function px(lat,lng){return[(lng+180)/360*2048,(90-lat)/180*1024];}
+      function land(pts){
+        g.beginPath(); var p=px(pts[0][0],pts[0][1]); g.moveTo(p[0],p[1]);
+        for(var i=1;i<pts.length;i++){p=px(pts[i][0],pts[i][1]);g.lineTo(p[0],p[1]);}
+        g.closePath(); g.fillStyle='#11284a'; g.fill();
+        g.strokeStyle='#1b3b6b'; g.lineWidth=2; g.stroke();
       }
-      cx.globalAlpha=1;
+      // Simplified Continents
+      land([[37,10],[32,-5],[20,-17],[14,-17],[5,-5],[0,-8],[-5,-8],[-20,-14],[-35,18],[-35,26],[-27,33],[-11,40],[4,42],[12,44],[22,37],[30,32]]);
+      land([[36,-9],[44,-9],[47,-5],[52,2],[55,9],[54,19],[55,24],[58,22],[60,25],[70,29],[61,59],[51,42],[47,37],[42,28],[41,29],[40,18],[36,-9]]);
+      land([[37,27],[42,42],[47,53],[55,73],[55,80],[60,68],[70,68],[72,53],[72,100],[73,130],[65,142],[55,135],[50,140],[45,135],[40,127],[35,120],[22,114],[10,105],[1,104],[5,99],[14,100],[18,102],[23,114],[30,122],[37,27]]);
+      land([[72,-73],[72,-80],[60,-95],[55,-78],[46,-84],[42,-83],[40,-74],[35,-77],[30,-88],[25,-90],[22,-88],[14,-90],[8,-77],[9,-80],[22,-106],[32,-117],[40,-124],[47,-124],[50,-128],[55,-130],[60,-136],[65,-168],[60,-168],[55,-165],[50,-128],[45,-124],[72,-140]]);
+      land([[12,-73],[5,-52],[0,-50],[-5,-35],[-23,-43],[-35,-57],[-55,-68],[-55,-64],[-40,-65],[-35,-70],[-18,-70],[-5,-80],[10,-75]]);
+      land([[-12,131],[-12,136],[-15,140],[-20,149],[-35,151],[-38,147],[-38,140],[-35,138],[-32,116],[-20,114],[-15,124]]);
+      // City Lights
+      var CITIES=[[51.5,-0.12],[40.71,-74.0],[35.68,139.69],[25.2,55.27],[-26.2,28.04],[19.43,-99.13],[1.35,103.82],[48.86,2.35],[34.05,-118.24],[31.23,121.47]];
+      CITIES.forEach(function(ci){
+        var p=px(ci[0],ci[1]);
+        var rg=g.createRadialGradient(p[0],p[1],0,p[0],p[1],12);
+        rg.addColorStop(0,'rgba(249,115,22,0.9)'); rg.addColorStop(1,'rgba(249,115,22,0)');
+        g.fillStyle=rg; g.beginPath(); g.arc(p[0],p[1],12,0,Math.PI*2); g.fill();
+        g.fillStyle='#fff'; g.beginPath(); g.arc(p[0],p[1],2,0,Math.PI*2); g.fill();
+      });
+      return new THREE.CanvasTexture(c);
     }
 
-    function arc(h1,h2,t,col){
-      var v1=v3(h1[0],h1[1],rot),v2=v3(h2[0],h2[1],rot);
-      // Skip if both hubs facing away
-      if(v1.z<0.02&&v2.z<0.02)return;
-      var p1=pj(v1),p2=pj(v2);
-      var mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
-      var d=Math.hypot(p2.x-p1.x,p2.y-p1.y);
-      if(d<10)return; // skip tiny arcs
-      var lf=d*0.36;
-      var nx=-(p2.y-p1.y)/d,ny=(p2.x-p1.x)/d;
-      var ccx=mx+nx*lf,ccy=my+ny*lf*0.4;
-      var al=Math.min((v1.z+v2.z)/2,1)*0.78;
-      cx.save();
-      cx.globalAlpha=al;cx.strokeStyle=col;cx.lineWidth=1.5;
-      // NO shadowBlur here â€” replaced with colored arc only
-      cx.setLineDash([5,6]);cx.beginPath();
-      cx.moveTo(p1.x,p1.y);cx.quadraticCurveTo(ccx,ccy,p2.x,p2.y);cx.stroke();
-      cx.setLineDash([]);
-      // Ship dot
-      var sx=(1-t)*(1-t)*p1.x+2*(1-t)*t*ccx+t*t*p2.x;
-      var sy=(1-t)*(1-t)*p1.y+2*(1-t)*t*ccy+t*t*p2.y;
-      // Simple trail (3 dots, no glow)
-      var k,tt,tx,ty;
-      for(k=1;k<=3;k++){
-        tt=Math.max(0,t-k*0.04);
-        tx=(1-tt)*(1-tt)*p1.x+2*(1-tt)*tt*ccx+tt*tt*p2.x;
-        ty=(1-tt)*(1-tt)*p1.y+2*(1-tt)*tt*ccy+tt*tt*p2.y;
-        cx.globalAlpha=al*(0.25-k*0.07);
-        cx.fillStyle='#fff';
-        cx.beginPath();cx.arc(tx,ty,2.4-k*0.4,0,Math.PI*2);cx.fill();
+    function buildGlobe(tex) {
+      /* Earth Mesh */
+      var geo = new THREE.SphereGeometry(1, 64, 64);
+      var mat = new THREE.MeshPhongMaterial({
+        map: tex,
+        specular: 0x223344,
+        shininess: 25,
+      });
+      var earth = new THREE.Mesh(geo, mat);
+      earth.rotation.y = -0.5;
+      scene.add(earth);
+
+      /* Simple, elegant atmospheric glow using a Sprite behind the Earth */
+      // This guarantees it never washes out the texture or looks like a cartoon blob
+      var canvas = document.createElement('canvas');
+      canvas.width = 256; canvas.height = 256;
+      var ctx = canvas.getContext('2d');
+      var gradient = ctx.createRadialGradient(128, 128, 60, 128, 128, 128);
+      gradient.addColorStop(0, 'rgba(60, 130, 255, 0.4)');
+      gradient.addColorStop(1, 'rgba(30, 70, 200, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 256, 256);
+      var glowTex = new THREE.CanvasTexture(canvas);
+      var glowMat = new THREE.SpriteMaterial({ map: glowTex, transparent: true, blending: THREE.AdditiveBlending });
+      var glow = new THREE.Sprite(glowMat);
+      glow.scale.set(2.8, 2.8, 1);
+      glow.position.z = -0.1; // Place slightly behind Earth
+      scene.add(glow);
+
+      /* Route Arcs & Hubs */
+      var HUBS=[[51.5,-0.12],[25.2,55.27],[1.35,103.82],[35.68,139.69],[40.71,-74.0],[48.86,2.35],[-26.2,28.04],[19.43,-99.13]];
+      var ROUTES=[[0,1,0xF97316],[1,2,0xF97316],[2,3,0x60a5fa],[4,5,0xF97316],[5,0,0x60a5fa],[1,6,0x4ade80],[4,7,0xa78bfa],[3,2,0x60a5fa]];
+      var arcObjs=[];
+
+      ROUTES.forEach(function(r){
+        var s=ll2v(HUBS[r[0]][0],HUBS[r[0]][1]);
+        var e=ll2v(HUBS[r[1]][0],HUBS[r[1]][1]);
+        var mid=s.clone().add(e).normalize().multiplyScalar(1.4); // lower arcs
+        var curve=new THREE.QuadraticBezierCurve3(s,mid,e);
+        var pts=curve.getPoints(60);
+        var g2=new THREE.BufferGeometry().setFromPoints(pts);
+        var m2=new THREE.LineBasicMaterial({color:r[2], transparent:true, opacity:0.6});
+        scene.add(new THREE.Line(g2,m2));
+
+        var dg=new THREE.SphereGeometry(0.012, 8, 8);
+        var dm=new THREE.MeshBasicMaterial({color:0xffffff});
+        var dot=new THREE.Mesh(dg,dm);
+        scene.add(dot);
+        arcObjs.push({curve:curve, dot:dot, offset:Math.random()});
+      });
+
+      HUBS.forEach(function(h){
+        var pos=ll2v(h[0],h[1],1.01);
+        var mg=new THREE.SphereGeometry(0.015,10,10);
+        var mm=new THREE.MeshBasicMaterial({color:0xF97316});
+        var mk=new THREE.Mesh(mg,mm);
+        mk.position.copy(pos);
+        earth.add(mk);
+      });
+
+      var clock = new THREE.Clock();
+      function animate(){
+        requestAnimationFrame(animate);
+        var t = clock.getElapsedTime();
+        earth.rotation.y += 0.001;
+        arcObjs.forEach(function(a){
+          var u = (t * 0.15 + a.offset) % 1;
+          a.dot.position.copy(a.curve.getPoint(u));
+        });
+        renderer.render(scene, camera);
       }
-      cx.globalAlpha=al;cx.fillStyle='#fff';
-      cx.beginPath();cx.arc(sx,sy,3.5,0,Math.PI*2);cx.fill();
-      cx.restore();
+      animate();
     }
 
-    var lastPulse=0;
-    function hub(h){
-      var v=v3(h[0],h[1],rot);if(v.z<0.06)return;
-      var p=pj(v),al=v.z;
-      var pu=((Date.now()/1100)%1); // slower pulse = cheaper
-      cx.save();
-      // Pulse ring â€” no shadowBlur
-      cx.globalAlpha=al*(1-pu)*0.3;
-      cx.strokeStyle='#FF6600';cx.lineWidth=1;
-      cx.beginPath();cx.arc(p.x,p.y,5+pu*16,0,Math.PI*2);cx.stroke();
-      // White dot
-      cx.globalAlpha=al;cx.fillStyle='#fff';
-      cx.beginPath();cx.arc(p.x,p.y,4.5,0,Math.PI*2);cx.fill();
-      // Orange centre
-      cx.fillStyle='#FF6600';
-      cx.beginPath();cx.arc(p.x,p.y,2.2,0,Math.PI*2);cx.fill();
-      // Label
-      cx.globalAlpha=al*0.92;
-      cx.font='bold 7.5px Barlow,Arial,sans-serif';
-      cx.fillStyle='rgba(255,255,255,0.95)';cx.textAlign='center';
-      cx.fillText(h[2],p.x,p.y-13);
-      cx.restore();
-    }
+    /* Load professional Earth texture */
+    var loader = new THREE.TextureLoader();
+    loader.crossOrigin = 'anonymous';
+    // Using a reliable NASA night texture from unpkg three-globe
+    loader.load(
+      'https://unpkg.com/three-globe/example/img/earth-night.jpg',
+      function(tex){ buildGlobe(tex); },
+      undefined,
+      function(){ buildGlobe(createFallbackTexture()); } // Reliable fallback
+    );
 
-    // --- MAIN LOOP ---
-    function frm(){
-      if(!running){rafId=null;return;}
-      cx.clearRect(0,0,W,H);
-      rot+=0.09; // ~5.4 deg/sec at 60fps â€” smooth and slow
-      atm();grid();land();
-      for(var i=0;i<ROUTES.length;i++){
-        pr[i]=(pr[i]+sp[i])%1;
-        arc(HUBS[ROUTES[i][0]],HUBS[ROUTES[i][1]],pr[i],ROUTES[i][2]);
-      }
-      for(var j=0;j<HUBS.length;j++)hub(HUBS[j]);
-      rafId=requestAnimationFrame(frm);
+    /* Resize Handler - Perfect Fitting */
+    function resize(){
+      var wrap = container.parentElement;
+      var size = Math.min(wrap.offsetWidth, wrap.offsetHeight, 600);
+      if(size < 200) size = wrap.offsetWidth; // safeguard
+      
+      renderer.setSize(size, size);
+      camera.aspect = 1;
+      camera.updateProjectionMatrix();
     }
+    window.addEventListener('resize', resize);
+    // Initial sizing delay to ensure CSS is applied
+    setTimeout(resize, 50);
 
-    // --- INTERSECTION OBSERVER: only animate when visible ---
-    if('IntersectionObserver' in window){
-      var obs=new IntersectionObserver(function(entries){
-        var vis=entries[0].isIntersecting;
-        if(vis&&!running){running=true;frm();}
-        else if(!vis&&running){running=false;if(rafId)cancelAnimationFrame(rafId);rafId=null;}
-      },{threshold:0.1});
-      obs.observe(cv);
-    } else {
-      // Fallback: always run
-      running=true;frm();
-    }
-
-    // --- LAND DOT GENERATOR (lower density than before) ---
-    function bld(){
-      var d=[];
-      function f(la0,lo0,la1,lo1,st){
-        if(!st)st=4.5; // wider step = fewer dots
-        for(var la=la0;la<=la1;la+=st)
-          for(var lo=lo0;lo<=lo1;lo+=st)
-            if(Math.random()>0.35)
-              d.push([lo+(Math.random()-0.5)*1.8,la+(Math.random()-0.5)*1.8]);
-      }
-      function fs(la0,lo0,la1,lo1,dn){
-        for(var la=la0;la<=la1;la+=7)
-          for(var lo=lo0;lo<=lo1;lo+=7)
-            if(Math.random()<dn)d.push([lo,la]);
-      }
-      // Africa
-      f(-35,14,10,37);f(10,14,38,52);f(5,-18,38,25);f(38,8,55,45);
-      // Europe
-      f(36,-10,72,32);f(50,32,72,60);f(60,-4,72,30);
-      // Asia
-      f(5,95,55,145);f(55,60,75,135);f(25,45,55,95);
-      f(-10,100,10,142);f(0,100,25,128);f(35,30,70,60);f(25,58,50,100);
-      // North America
-      f(25,-125,72,-60);f(15,-95,25,-78);f(5,-85,15,-75);
-      // South America
-      f(-55,-75,12,-35);
-      // Australia
-      f(-40,114,-12,154);
-      // Japan
-      f(31,130,46,146);
-      // UK + Ireland
-      f(50,-6,61,2);
-      // Greenland (very sparse)
-      fs(60,-55,82,-18,0.18);
-      // Madagascar
-      f(-26,43,-12,50);
-      // Indonesia
-      f(-8,96,8,141);
-      return d;
-    }
+    /* Live counter */
+    var el2=document.getElementById('live-routes');
+    if(el2){var base=12491;setInterval(function(){base+=Math.floor(Math.random()*5)-2;el2.textContent=base.toLocaleString();},2800);}
   })();
   </script>
 
@@ -2214,61 +2716,276 @@
         <p class="section-desc">From a single parcel to a full container — we provide end-to-end logistics solutions tailored to your business needs.</p>
       </div>
 
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="svc-icon-wrap">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-          </div>
-          <h3 class="svc-title">Air Freight</h3>
-          <p class="svc-desc">Express and time-definite air cargo solutions to 192+ countries. Charter flights, temperature-controlled and high-value cargo specialists.</p>
-          <a href="#quote-section" class="svc-link">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></a>
-        </div>
+      
 
-        <div class="service-card reveal">
-          <div class="svc-icon-wrap">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-          </div>
-          <h3 class="svc-title">Sea Freight &amp; Customs</h3>
-          <p class="svc-desc">FCL &amp; LCL container shipping with full customs clearance. Port-to-port and door-to-door delivery for international trade.</p>
-          <a href="#quote-section" class="svc-link">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></a>
-        </div>
+<style>
+  .service-showcase {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid var(--gray-mid);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* The Custom Dropdown Header */
+  .ss-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--gray-mid);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #f8fafc;
+    border-radius: 20px 20px 0 0;
+    transition: background 0.3s;
+  }
+  .ss-header:hover {
+    background: #f1f5f9;
+  }
+  .ss-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ss-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-dark);
+    font-weight: 700;
+  }
+  .ss-current {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ss-chevron {
+    color: var(--orange);
+    transition: transform 0.3s;
+  }
+  .service-showcase.open .ss-chevron {
+    transform: rotate(180deg);
+  }
 
-        <div class="service-card reveal">
-          <div class="svc-icon-wrap">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-          </div>
-          <h3 class="svc-title">Road Transportation</h3>
-          <p class="svc-desc">Same-day, overnight and long-haul road freight. Heavy haulage, cross-border transport and last-mile delivery across regions.</p>
-          <a href="#quote-section" class="svc-link">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></a>
-        </div>
+  /* The Dropdown Menu */
+  .ss-dropdown {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-radius: 0 0 20px 20px;
+    border: 1px solid var(--gray-mid);
+    border-top: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    overflow: hidden;
+  }
+  .service-showcase.open .ss-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .ss-option {
+    padding: 16px 32px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ss-option:hover {
+    background: rgba(242, 100, 25, 0.05);
+    color: var(--orange);
+  }
+  .ss-option svg { color: var(--gray-dark); transition: color 0.2s; }
+  .ss-option:hover svg { color: var(--orange); }
 
-        <div class="service-card reveal">
-          <div class="svc-icon-wrap">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          </div>
-          <h3 class="svc-title">Diplomatic &amp; Secure Logistics</h3>
-          <p class="svc-desc">Highly secure, confidential shipping for sensitive documents, diplomatic bags, valuables and government consignments.</p>
-          <a href="#quote-section" class="svc-link">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></a>
-        </div>
+  /* The Content Area */
+  .ss-content-area {
+    padding: 40px 32px;
+    min-height: 220px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .ss-icon-large {
+    width: 70px;
+    height: 70px;
+    background: rgba(242, 100, 25, 0.08);
+    color: var(--orange);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ss-icon-large svg { width: 34px; height: 34px; }
+  
+  .ss-text h3 {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .ss-text p {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+  }
+  
+  /* Fade animation when switching */
+  .ss-fade { animation: ssFadeIn 0.4s ease-out; }
+  @keyframes ssFadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 
-        <div class="service-card reveal">
-          <div class="svc-icon-wrap">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          </div>
-          <h3 class="svc-title">Warehousing &amp; Storage</h3>
-          <p class="svc-desc">Strategic warehouse locations with climate-controlled storage, 24/7 CCTV, inventory management and fulfillment services.</p>
-          <a href="#quote-section" class="svc-link">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></a>
-        </div>
+  @media (max-width: 600px) {
+    .ss-header { padding: 20px; }
+    .ss-content-area { padding: 24px 20px; flex-direction: column; gap: 20px; }
+    .ss-option { padding: 14px 20px; }
+  }
+</style>
 
-        <div class="service-card reveal">
-          <div class="svc-icon-wrap">
-            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-          </div>
-          <h3 class="svc-title">Packaging &amp; Handling</h3>
-          <p class="svc-desc">Professional packaging solutions for fragile, oversized and hazardous goods. Export crating, labeling and compliance documentation included.</p>
-          <a href="#quote-section" class="svc-link">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></a>
-        </div>
-      </div>
+<div class="service-showcase reveal" id="service-showcase">
+  
+  <!-- Header / Dropdown Trigger -->
+  <div class="ss-header" onclick="document.getElementById('service-showcase').classList.toggle('open')">
+    <div class="ss-header-left">
+      <span class="ss-label">Explore Our Services</span>
+      <div class="ss-current" id="ss-current-title">Air Freight</div>
+    </div>
+    <div class="ss-chevron">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </div>
+
+  <!-- Dropdown Menu -->
+  <div class="ss-dropdown">
+    <div class="ss-option" onclick="selectService('air')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+      Air Freight
+    </div>
+    <div class="ss-option" onclick="selectService('sea')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+      Sea Freight & Customs
+    </div>
+    <div class="ss-option" onclick="selectService('road')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+      Road Transportation
+    </div>
+    <div class="ss-option" onclick="selectService('secure')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      Diplomatic & Secure Logistics
+    </div>
+    <div class="ss-option" onclick="selectService('warehouse')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+      Warehousing & Storage
+    </div>
+    <div class="ss-option" onclick="selectService('pack')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      Packaging & Handling
+    </div>
+  </div>
+
+  <!-- Dynamic Content Area -->
+  <div class="ss-content-area ss-fade" id="ss-content">
+    <div class="ss-icon-large" id="ss-icon">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+    </div>
+    <div class="ss-text">
+      <h3 id="ss-title">Air Freight</h3>
+      <p id="ss-desc">Express and time-definite air cargo solutions to 192+ countries. Charter flights, temperature-controlled and high-value cargo specialists.</p>
+      <a href="#quote-section" class="svc-link" style="color:var(--orange); font-weight:700; display:inline-flex; align-items:center; gap:6px; text-decoration:none;">
+        Learn More 
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const servicesData = {
+    'air': {
+      title: 'Air Freight',
+      desc: 'Express and time-definite air cargo solutions to 192+ countries. Charter flights, temperature-controlled and high-value cargo specialists.',
+      icon: '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>'
+    },
+    'sea': {
+      title: 'Sea Freight & Customs',
+      desc: 'FCL & LCL container shipping with full customs clearance. Port-to-port and door-to-door delivery for international trade.',
+      icon: '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>'
+    },
+    'road': {
+      title: 'Road Transportation',
+      desc: 'Same-day, overnight and long-haul road freight. Heavy haulage, cross-border transport and last-mile delivery across regions.',
+      icon: '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>'
+    },
+    'secure': {
+      title: 'Diplomatic & Secure Logistics',
+      desc: 'Highly secure, confidential shipping for sensitive documents, diplomatic bags, valuables and government consignments.',
+      icon: '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>'
+    },
+    'warehouse': {
+      title: 'Warehousing & Storage',
+      desc: 'Strategic warehouse locations with climate-controlled storage, 24/7 CCTV, inventory management and fulfillment services.',
+      icon: '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>'
+    },
+    'pack': {
+      title: 'Packaging & Handling',
+      desc: 'Professional packaging solutions for fragile, oversized and hazardous goods. Export crating, labeling and compliance documentation included.',
+      icon: '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>'
+    }
+  };
+
+  function selectService(key) {
+    const data = servicesData[key];
+    if (!data) return;
+
+    // Update Header
+    document.getElementById('ss-current-title').textContent = data.title;
+    
+    // Close dropdown
+    document.getElementById('service-showcase').classList.remove('open');
+
+    // Update Content with fade effect
+    const content = document.getElementById('ss-content');
+    content.classList.remove('ss-fade');
+    void content.offsetWidth; // trigger reflow
+    
+    document.getElementById('ss-icon').innerHTML = data.icon;
+    document.getElementById('ss-title').textContent = data.title;
+    document.getElementById('ss-desc').textContent = data.desc;
+    
+    content.classList.add('ss-fade');
+  }
+
+  // Close dropdown if clicked outside
+  document.addEventListener('click', function(e) {
+    const showcase = document.getElementById('service-showcase');
+    if (!showcase.contains(e.target)) {
+      showcase.classList.remove('open');
+    }
+  });
+</script>
+
     </div>
   </section>
 
@@ -2279,7 +2996,7 @@
     <div class="container">
       <div class="section-header reveal">
         <div class="section-eyebrow">Why Choose Us</div>
-        <h2 class="section-h2">The PrimeLogistics Trace Advantage</h2>
+        <h2 class="section-h2">The Nexshipment Advantage</h2>
         <p class="section-desc">We go beyond delivery — we build trusted logistics partnerships that help your business grow without borders.</p>
       </div>
 
@@ -2409,8 +3126,8 @@
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <div class="badge-title">11+ Years Experience</div>
-            <div class="badge-sub">Proven logistics excellence since 2013</div>
+            <div class="badge-title">7+ Years Experience</div>
+            <div class="badge-sub">Proven logistics excellence since 2019</div>
           </div>
         </div>
         <div class="badge-card reveal">
@@ -2443,69 +3160,1337 @@
       <div class="section-header reveal">
         <div class="section-eyebrow">Client Reviews</div>
         <h2 class="section-h2">What Our Clients Say</h2>
-        <p class="section-desc">Over 16,000 satisfied businesses trust PrimeLogistics Trace to deliver their most important shipments, every day.</p>
+        <p class="section-desc">Over 16,000 satisfied businesses trust Nexshipment to deliver their most important shipments, every day.</p>
       </div>
 
-      <div class="testi-grid">
-        <div class="testi-card reveal">
-          <img src="https://flagcdn.com/za.svg" alt="South Africa" class="testi-flag">
-          <div class="testi-stars">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="testi-text">"PrimeLogistics Trace handled our medical equipment shipment from London to Johannesburg with incredible professionalism. Real-time updates every step of the way — absolutely outstanding service."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">TN</div>
-            <div>
-              <div class="testi-name">Thabo Ndlovu</div>
-              <div class="testi-company">MedSupply Africa Ltd · Johannesburg, South Africa</div>
-            </div>
-          </div>
-        </div>
+      
+<style>
+  .reviews-marquee-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    padding: 20px 0 60px;
+    position: relative;
+    background: transparent;
+  }
+  
+  /* Gradient masks to fade edges */
+  .reviews-marquee-container::before,
+  .reviews-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15vw;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .reviews-marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, #f4f6f9 0%, transparent 100%);
+  }
+  .reviews-marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, #f4f6f9 0%, transparent 100%);
+  }
 
-        <div class="testi-card reveal">
-          <img src="https://flagcdn.com/de.svg" alt="Germany" class="testi-flag">
-          <div class="testi-stars">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="testi-text">"We've shipped machinery from Germany to multiple African destinations through PrimeLogistics Trace for 3 years now. Their customs expertise alone saves us thousands per shipment. Highly recommended."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,#162050,#FF6600);">KM</div>
-            <div>
-              <div class="testi-name">Klaus Müller</div>
-              <div class="testi-company">EuroMach Exports GmbH · Frankfurt, Germany</div>
-            </div>
-          </div>
-        </div>
+  .reviews-marquee-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: scrollReviews 140s linear infinite;
+  }
+  
+  .reviews-marquee-track:hover {
+    animation-play-state: paused;
+  }
 
-        <div class="testi-card reveal">
-          <img src="https://flagcdn.com/sg.svg" alt="Singapore" class="testi-flag">
-          <div class="testi-stars">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="testi-text">"The tracking system is a game-changer. I can see exactly where my shipment is at any moment. The team is responsive and the pricing is very fair for the quality they deliver."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,#1a6b3a,#FF6600);">SN</div>
-            <div>
-              <div class="testi-name">Sarah Nakamoto</div>
-              <div class="testi-company">AsiaPac Trading Co. · Singapore</div>
-            </div>
-          </div>
+  @keyframes scrollReviews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 12px)); /* -50% of track width minus half gap */ }
+  }
+
+  .marquee-review-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-mid);
+    border-radius: 20px;
+    padding: 28px;
+    width: 420px;
+    flex-shrink: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  
+  .marquee-review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.07);
+    border-color: rgba(242, 100, 25, 0.2);
+  }
+
+  .mr-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .mr-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    font-family: var(--font-head);
+    flex-shrink: 0;
+  }
+
+  .mr-meta {
+    flex: 1;
+  }
+
+  .mr-name {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin: 0 0 2px 0;
+  }
+
+  .mr-company {
+    font-size: 0.75rem;
+    color: var(--gray-dark);
+    font-weight: 600;
+  }
+
+  .mr-flag {
+    width: 24px;
+    height: 16px;
+    border-radius: 2px;
+    object-fit: cover;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .mr-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 14px;
+  }
+
+  .mr-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a5568;
+    font-style: italic;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .marquee-review-card { width: 320px; padding: 20px; }
+    .mr-name { font-size: 1rem; }
+    .mr-text { font-size: 0.9rem; }
+  }
+</style>
+
+      <div class="reviews-marquee-container reveal">
+        <div class="reviews-marquee-track">
+          
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#FF6600;">TN</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Thabo Ndlovu</h4>
+        <div class="mr-company">MedSupply Africa Ltd &middot; South Africa</div>
+      </div>
+      <img src="https://flagcdn.com/za.svg" alt="South Africa" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Nexshipment handled our medical equipment shipment from London to Johannesburg with incredible professionalism. Real-time updates every step of the way — absolutely outstanding service."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#162050;">KM</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Klaus Müller</h4>
+        <div class="mr-company">EuroMach Exports GmbH &middot; Germany</div>
+      </div>
+      <img src="https://flagcdn.com/de.svg" alt="Germany" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"We've shipped machinery from Germany to multiple African destinations through Nexshipment for 3 years now. Their customs expertise alone saves us thousands per shipment."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#1a6b3a;">SN</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Sarah Nakamoto</h4>
+        <div class="mr-company">AsiaPac Trading Co. &middot; Singapore</div>
+      </div>
+      <img src="https://flagcdn.com/sg.svg" alt="Singapore" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The tracking system is a game-changer. I can see exactly where my shipment is at any moment. The team is responsive and the pricing is very fair for the quality."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#0B2545;">JC</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">James Carter</h4>
+        <div class="mr-company">AutoParts Direct &middot; USA</div>
+      </div>
+      <img src="https://flagcdn.com/us.svg" alt="USA" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Nexshipment is the only logistics partner we trust for our urgent air freight. They’ve never missed a deadline, and their 24/7 support is phenomenal."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#F26419;">ER</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Elena Rossi</h4>
+        <div class="mr-company">Milano Fashion Works &middot; Italy</div>
+      </div>
+      <img src="https://flagcdn.com/it.svg" alt="Italy" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Shipping high-value garments requires care. The secure packaging and temperature-controlled freight provided by Nexshipment ensure our products arrive flawlessly in New York."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#4ade80;">DC</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">David Chen</h4>
+        <div class="mr-company">TechNova Solutions &middot; China</div>
+      </div>
+      <img src="https://flagcdn.com/cn.svg" alt="China" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their sea freight container consolidation (LCL) is incredibly efficient. We’ve cut our logistics overhead by 18% since switching to Nexshipment."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#7c3aed;">AM</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Aisha Mohammed</h4>
+        <div class="mr-company">Global Traders UAE &middot; UAE</div>
+      </div>
+      <img src="https://flagcdn.com/ae.svg" alt="UAE" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"From Dubai to the world, Nexshipment’s warehousing and rapid deployment have allowed us to scale globally without worrying about inventory bottlenecks."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#16a34a;">LO</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Liam O'Connor</h4>
+        <div class="mr-company">Celtic Brewing Co. &middot; Ireland</div>
+      </div>
+      <img src="https://flagcdn.com/ie.svg" alt="Ireland" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Exporting beverages requires strict compliance. Nexshipment handled all the customs documentation seamlessly. A totally stress-free experience."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#b91c1c;">SL</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Sophie Laurent</h4>
+        <div class="mr-company">Bordeaux Vineyards &middot; France</div>
+      </div>
+      <img src="https://flagcdn.com/fr.svg" alt="France" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their climate-controlled storage and transit options are top-tier. Our fragile wine shipments always arrive in perfect condition."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#ea580c;">RP</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Raj Patel</h4>
+        <div class="mr-company">Mumbai Textiles &middot; India</div>
+      </div>
+      <img src="https://flagcdn.com/in.svg" alt="India" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The dashboard is beautiful and the API integration was flawless. We track hundreds of shipments daily without leaving our own ERP system."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#22c55e;">CS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Carlos Silva</h4>
+        <div class="mr-company">AgroExport BR &middot; Brazil</div>
+      </div>
+      <img src="https://flagcdn.com/br.svg" alt="Brazil" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Heavy haulage road transportation is their strong suit. They moved our 40-ton agricultural machinery across borders with zero delays."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#1e3a8a;">EW</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Emily Watson</h4>
+        <div class="mr-company">London Art Dealers &middot; UK</div>
+      </div>
+      <img src="https://flagcdn.com/gb.svg" alt="UK" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"We use their secure diplomatic logistics for moving priceless artwork. The level of security and discretion they provide is unmatched in the industry."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#dc2626;">KS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Kenji Sato</h4>
+        <div class="mr-company">Tokyo Electronics &middot; Japan</div>
+      </div>
+      <img src="https://flagcdn.com/jp.svg" alt="Japan" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Precision and punctuality. That’s what you get with Nexshipment. Their air freight routes between Tokyo and Silicon Valley are incredibly reliable."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#047857;">MG</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Maria Garcia</h4>
+        <div class="mr-company">Mexican Imports LLC &middot; Mexico</div>
+      </div>
+      <img src="https://flagcdn.com/mx.svg" alt="Mexico" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Customs clearance used to be our biggest headache. Since partnering with Nexshipment, our containers clear ports in record time."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#0369a1;">OS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Oliver Smith</h4>
+        <div class="mr-company">Sydney Marine Parts &middot; Australia</div>
+      </div>
+      <img src="https://flagcdn.com/au.svg" alt="Australia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their port-to-port sea freight tracking is the most accurate I’ve seen. Knowing exactly when our cargo hits the docks saves us so much time."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#7f1d1d;">FA</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Fatima Al-Fayed</h4>
+        <div class="mr-company">Desert Sands Logistics &middot; Qatar</div>
+      </div>
+      <img src="https://flagcdn.com/qa.svg" alt="Qatar" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The cross-border transport network they have built in the Middle East is highly efficient. They are our go-to for regional road freight."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#f59e0b;">HV</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Hans Van Der Berg</h4>
+        <div class="mr-company">Dutch Tulip Exports &middot; Netherlands</div>
+      </div>
+      <img src="https://flagcdn.com/nl.svg" alt="Netherlands" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Time is of the essence when shipping flowers. Nexshipment’s express air cargo gets our blooms to market fresh, every single time."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#1e40af;">II</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Ivan Ivanov</h4>
+        <div class="mr-company">Siberian Timber &middot; Russia</div>
+      </div>
+      <img src="https://flagcdn.com/ru.svg" alt="Russia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"We needed a partner capable of handling massive bulk shipments. Nexshipment’s charter flight solutions were exactly what we needed for our urgent deliveries."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#db2777;">CK</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Chloe Kim</h4>
+        <div class="mr-company">Seoul Cosmetics &middot; South Korea</div>
+      </div>
+      <img src="https://flagcdn.com/kr.svg" alt="South Korea" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"E-commerce fulfillment is highly competitive. Nexshipment's warehousing and pick-and-pack services have helped us dominate the Asian market."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#9a3412;">OH</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Omar Hassan</h4>
+        <div class="mr-company">Nile Cotton Exports &middot; Egypt</div>
+      </div>
+      <img src="https://flagcdn.com/eg.svg" alt="Egypt" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Outstanding port-to-door delivery. They manage the entire supply chain so we can focus entirely on manufacturing."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#115e59;">AN</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Anders Nielsen</h4>
+        <div class="mr-company">Nordic Furniture Design &middot; Denmark</div>
+      </div>
+      <img src="https://flagcdn.com/dk.svg" alt="Denmark" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Sustainability is important to us. Nexshipment’s route optimization has helped us significantly reduce the carbon footprint of our supply chain."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#b91c1c;">PS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Priya Sharma</h4>
+        <div class="mr-company">TechSpares Inc. &middot; Canada</div>
+      </div>
+      <img src="https://flagcdn.com/ca.svg" alt="Canada" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"When we need a spare part moved overnight, we don't hesitate. Nexshipment's AOG (Aircraft on Ground) emergency logistics are life-savers."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#854d0e;">LF</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Luis Fernandez</h4>
+        <div class="mr-company">Andes Coffee Co. &middot; Colombia</div>
+      </div>
+      <img src="https://flagcdn.com/co.svg" alt="Colombia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Exporting coffee globally requires deep customs knowledge. Their team handled everything flawlessly, preventing any delays at the port."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#4f46e5;">YT</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Yuki Tanaka</h4>
+        <div class="mr-company">Osaka Auto Parts &middot; Japan</div>
+      </div>
+      <img src="https://flagcdn.com/jp.svg" alt="Japan" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their ro-ro (roll-on/roll-off) sea freight options for vehicles and heavy machinery are cost-effective and highly reliable."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#065f46;">MA</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Mohammed Al-Saud</h4>
+        <div class="mr-company">Riyadh Heavy Industries &middot; Saudi Arabia</div>
+      </div>
+      <img src="https://flagcdn.com/sa.svg" alt="Saudi Arabia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Project logistics is their specialty. They coordinated the transport of an entire factory assembly line across three continents flawlessly."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#dc2626;">CD</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Claire Dubois</h4>
+        <div class="mr-company">Geneva Pharmaceuticals &middot; Switzerland</div>
+      </div>
+      <img src="https://flagcdn.com/ch.svg" alt="Switzerland" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Temperature-controlled air freight is critical for our vaccines. Nexshipment’s cold chain logistics are certified and completely trustworthy."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#2563eb;">MR</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Mateo Rodriguez</h4>
+        <div class="mr-company">Buenos Aires Beef &middot; Argentina</div>
+      </div>
+      <img src="https://flagcdn.com/ar.svg" alt="Argentina" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Refrigerated sea freight at its finest. Our products arrive in Europe tasting as fresh as the day they were packed."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#ea580c;">WL</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Wei Ling</h4>
+        <div class="mr-company">Shenzhen Electronics &middot; China</div>
+      </div>
+      <img src="https://flagcdn.com/cn.svg" alt="China" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"During peak seasons, capacity is always an issue. Nexshipment always secures space for our cargo when other forwarders fail."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#0f172a;">JD</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">John Doe</h4>
+        <div class="mr-company">Global Supply Solutions &middot; USA</div>
+      </div>
+      <img src="https://flagcdn.com/us.svg" alt="USA" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The new tracking interface is stunning. We have full visibility, and the Live Network Pulse makes us feel totally in control of our freight."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#be123c;">AK</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Anna Kowalska</h4>
+        <div class="mr-company">Warsaw Logistics &middot; Poland</div>
+      </div>
+      <img src="https://flagcdn.com/pl.svg" alt="Poland" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their road freight network across Europe is unparalleled. Fast transit times and completely transparent pricing."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#FF6600;">TN</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Thabo Ndlovu</h4>
+        <div class="mr-company">MedSupply Africa Ltd &middot; South Africa</div>
+      </div>
+      <img src="https://flagcdn.com/za.svg" alt="South Africa" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Nexshipment handled our medical equipment shipment from London to Johannesburg with incredible professionalism. Real-time updates every step of the way — absolutely outstanding service."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#162050;">KM</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Klaus Müller</h4>
+        <div class="mr-company">EuroMach Exports GmbH &middot; Germany</div>
+      </div>
+      <img src="https://flagcdn.com/de.svg" alt="Germany" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"We've shipped machinery from Germany to multiple African destinations through Nexshipment for 3 years now. Their customs expertise alone saves us thousands per shipment."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#1a6b3a;">SN</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Sarah Nakamoto</h4>
+        <div class="mr-company">AsiaPac Trading Co. &middot; Singapore</div>
+      </div>
+      <img src="https://flagcdn.com/sg.svg" alt="Singapore" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The tracking system is a game-changer. I can see exactly where my shipment is at any moment. The team is responsive and the pricing is very fair for the quality."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#0B2545;">JC</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">James Carter</h4>
+        <div class="mr-company">AutoParts Direct &middot; USA</div>
+      </div>
+      <img src="https://flagcdn.com/us.svg" alt="USA" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Nexshipment is the only logistics partner we trust for our urgent air freight. They’ve never missed a deadline, and their 24/7 support is phenomenal."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#F26419;">ER</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Elena Rossi</h4>
+        <div class="mr-company">Milano Fashion Works &middot; Italy</div>
+      </div>
+      <img src="https://flagcdn.com/it.svg" alt="Italy" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Shipping high-value garments requires care. The secure packaging and temperature-controlled freight provided by Nexshipment ensure our products arrive flawlessly in New York."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#4ade80;">DC</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">David Chen</h4>
+        <div class="mr-company">TechNova Solutions &middot; China</div>
+      </div>
+      <img src="https://flagcdn.com/cn.svg" alt="China" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their sea freight container consolidation (LCL) is incredibly efficient. We’ve cut our logistics overhead by 18% since switching to Nexshipment."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#7c3aed;">AM</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Aisha Mohammed</h4>
+        <div class="mr-company">Global Traders UAE &middot; UAE</div>
+      </div>
+      <img src="https://flagcdn.com/ae.svg" alt="UAE" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"From Dubai to the world, Nexshipment’s warehousing and rapid deployment have allowed us to scale globally without worrying about inventory bottlenecks."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#16a34a;">LO</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Liam O'Connor</h4>
+        <div class="mr-company">Celtic Brewing Co. &middot; Ireland</div>
+      </div>
+      <img src="https://flagcdn.com/ie.svg" alt="Ireland" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Exporting beverages requires strict compliance. Nexshipment handled all the customs documentation seamlessly. A totally stress-free experience."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#b91c1c;">SL</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Sophie Laurent</h4>
+        <div class="mr-company">Bordeaux Vineyards &middot; France</div>
+      </div>
+      <img src="https://flagcdn.com/fr.svg" alt="France" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their climate-controlled storage and transit options are top-tier. Our fragile wine shipments always arrive in perfect condition."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#ea580c;">RP</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Raj Patel</h4>
+        <div class="mr-company">Mumbai Textiles &middot; India</div>
+      </div>
+      <img src="https://flagcdn.com/in.svg" alt="India" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The dashboard is beautiful and the API integration was flawless. We track hundreds of shipments daily without leaving our own ERP system."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#22c55e;">CS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Carlos Silva</h4>
+        <div class="mr-company">AgroExport BR &middot; Brazil</div>
+      </div>
+      <img src="https://flagcdn.com/br.svg" alt="Brazil" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Heavy haulage road transportation is their strong suit. They moved our 40-ton agricultural machinery across borders with zero delays."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#1e3a8a;">EW</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Emily Watson</h4>
+        <div class="mr-company">London Art Dealers &middot; UK</div>
+      </div>
+      <img src="https://flagcdn.com/gb.svg" alt="UK" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"We use their secure diplomatic logistics for moving priceless artwork. The level of security and discretion they provide is unmatched in the industry."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#dc2626;">KS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Kenji Sato</h4>
+        <div class="mr-company">Tokyo Electronics &middot; Japan</div>
+      </div>
+      <img src="https://flagcdn.com/jp.svg" alt="Japan" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Precision and punctuality. That’s what you get with Nexshipment. Their air freight routes between Tokyo and Silicon Valley are incredibly reliable."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#047857;">MG</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Maria Garcia</h4>
+        <div class="mr-company">Mexican Imports LLC &middot; Mexico</div>
+      </div>
+      <img src="https://flagcdn.com/mx.svg" alt="Mexico" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Customs clearance used to be our biggest headache. Since partnering with Nexshipment, our containers clear ports in record time."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#0369a1;">OS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Oliver Smith</h4>
+        <div class="mr-company">Sydney Marine Parts &middot; Australia</div>
+      </div>
+      <img src="https://flagcdn.com/au.svg" alt="Australia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their port-to-port sea freight tracking is the most accurate I’ve seen. Knowing exactly when our cargo hits the docks saves us so much time."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#7f1d1d;">FA</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Fatima Al-Fayed</h4>
+        <div class="mr-company">Desert Sands Logistics &middot; Qatar</div>
+      </div>
+      <img src="https://flagcdn.com/qa.svg" alt="Qatar" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The cross-border transport network they have built in the Middle East is highly efficient. They are our go-to for regional road freight."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#f59e0b;">HV</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Hans Van Der Berg</h4>
+        <div class="mr-company">Dutch Tulip Exports &middot; Netherlands</div>
+      </div>
+      <img src="https://flagcdn.com/nl.svg" alt="Netherlands" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Time is of the essence when shipping flowers. Nexshipment’s express air cargo gets our blooms to market fresh, every single time."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#1e40af;">II</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Ivan Ivanov</h4>
+        <div class="mr-company">Siberian Timber &middot; Russia</div>
+      </div>
+      <img src="https://flagcdn.com/ru.svg" alt="Russia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"We needed a partner capable of handling massive bulk shipments. Nexshipment’s charter flight solutions were exactly what we needed for our urgent deliveries."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#db2777;">CK</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Chloe Kim</h4>
+        <div class="mr-company">Seoul Cosmetics &middot; South Korea</div>
+      </div>
+      <img src="https://flagcdn.com/kr.svg" alt="South Korea" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"E-commerce fulfillment is highly competitive. Nexshipment's warehousing and pick-and-pack services have helped us dominate the Asian market."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#9a3412;">OH</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Omar Hassan</h4>
+        <div class="mr-company">Nile Cotton Exports &middot; Egypt</div>
+      </div>
+      <img src="https://flagcdn.com/eg.svg" alt="Egypt" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Outstanding port-to-door delivery. They manage the entire supply chain so we can focus entirely on manufacturing."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#115e59;">AN</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Anders Nielsen</h4>
+        <div class="mr-company">Nordic Furniture Design &middot; Denmark</div>
+      </div>
+      <img src="https://flagcdn.com/dk.svg" alt="Denmark" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Sustainability is important to us. Nexshipment’s route optimization has helped us significantly reduce the carbon footprint of our supply chain."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#b91c1c;">PS</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Priya Sharma</h4>
+        <div class="mr-company">TechSpares Inc. &middot; Canada</div>
+      </div>
+      <img src="https://flagcdn.com/ca.svg" alt="Canada" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"When we need a spare part moved overnight, we don't hesitate. Nexshipment's AOG (Aircraft on Ground) emergency logistics are life-savers."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#854d0e;">LF</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Luis Fernandez</h4>
+        <div class="mr-company">Andes Coffee Co. &middot; Colombia</div>
+      </div>
+      <img src="https://flagcdn.com/co.svg" alt="Colombia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Exporting coffee globally requires deep customs knowledge. Their team handled everything flawlessly, preventing any delays at the port."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#4f46e5;">YT</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Yuki Tanaka</h4>
+        <div class="mr-company">Osaka Auto Parts &middot; Japan</div>
+      </div>
+      <img src="https://flagcdn.com/jp.svg" alt="Japan" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their ro-ro (roll-on/roll-off) sea freight options for vehicles and heavy machinery are cost-effective and highly reliable."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#065f46;">MA</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Mohammed Al-Saud</h4>
+        <div class="mr-company">Riyadh Heavy Industries &middot; Saudi Arabia</div>
+      </div>
+      <img src="https://flagcdn.com/sa.svg" alt="Saudi Arabia" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Project logistics is their specialty. They coordinated the transport of an entire factory assembly line across three continents flawlessly."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#dc2626;">CD</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Claire Dubois</h4>
+        <div class="mr-company">Geneva Pharmaceuticals &middot; Switzerland</div>
+      </div>
+      <img src="https://flagcdn.com/ch.svg" alt="Switzerland" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Temperature-controlled air freight is critical for our vaccines. Nexshipment’s cold chain logistics are certified and completely trustworthy."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#2563eb;">MR</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Mateo Rodriguez</h4>
+        <div class="mr-company">Buenos Aires Beef &middot; Argentina</div>
+      </div>
+      <img src="https://flagcdn.com/ar.svg" alt="Argentina" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Refrigerated sea freight at its finest. Our products arrive in Europe tasting as fresh as the day they were packed."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#ea580c;">WL</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Wei Ling</h4>
+        <div class="mr-company">Shenzhen Electronics &middot; China</div>
+      </div>
+      <img src="https://flagcdn.com/cn.svg" alt="China" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"During peak seasons, capacity is always an issue. Nexshipment always secures space for our cargo when other forwarders fail."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#0f172a;">JD</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">John Doe</h4>
+        <div class="mr-company">Global Supply Solutions &middot; USA</div>
+      </div>
+      <img src="https://flagcdn.com/us.svg" alt="USA" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"The new tracking interface is stunning. We have full visibility, and the Live Network Pulse makes us feel totally in control of our freight."</p>
+  </div>
+
+  <div class="marquee-review-card">
+    <div class="mr-header">
+      <div class="mr-avatar" style="background:#be123c;">AK</div>
+      <div class="mr-meta">
+        <h4 class="mr-name">Anna Kowalska</h4>
+        <div class="mr-company">Warsaw Logistics &middot; Poland</div>
+      </div>
+      <img src="https://flagcdn.com/pl.svg" alt="Poland" class="mr-flag">
+    </div>
+    <div class="mr-stars">
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg width="14" height="14" fill="#F97316" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <p class="mr-text">"Their road freight network across Europe is unparalleled. Fast transit times and completely transparent pricing."</p>
+  </div>
+
         </div>
       </div>
     </div>
+</section>
+  <!-- ════════════════════════════════════════
+       INTEGRATIONS
+  ════════════════════════════════════════ -->
+  <section id="integrations" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Seamless Connectivity</div>
+        <h2 class="section-h2">Enterprise Integrations</h2>
+        <p class="section-desc">Connect Nexshipment directly to your existing tech stack. Automate orders, synchronize inventory, and pull live tracking data directly into your ERP or E-commerce platform.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:40px;">
+        
+        <div class="reveal" style="background:var(--gray-light);border:1px solid var(--gray-mid);border-radius:16px;padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:var(--transition);cursor:pointer;" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--gray-mid)';this.style.transform='none'">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Shopify_Logo.png" alt="Shopify" style="height:40px;object-fit:contain;margin-bottom:20px;filter:grayscale(100%);opacity:0.7;transition:0.3s;" onmouseover="this.style.filter='none';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)';this.style.opacity='0.7'">
+          <h3 style="font-family:var(--font-head);font-size:1.1rem;color:var(--navy);margin-bottom:8px;">Shopify</h3>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.5;">Auto-sync orders and push live tracking back to your store.</p>
+        </div>
+
+        <div class="reveal" style="background:var(--gray-light);border:1px solid var(--gray-mid);border-radius:16px;padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:var(--transition);cursor:pointer;" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--gray-mid)';this.style.transform='none'">
+          
+  <div class="woo-icon-wrapper" style="height:44px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; color:var(--text-light); transition:color 0.3s;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--text-light)'">
+    <svg viewBox="0 0 100 100" fill="currentColor" style="height:100%; width:auto;">
+      <path d="M50 5C24.6 5 4 23.5 4 46.3c0 11.2 5 21.4 13.1 28.9l-2.9 11.8c-.4 1.6.2 3.3 1.5 4.3 1.3 1 3.2.9 4.4-.1l13-10.4c5.6 1.7 11.6 2.6 17.7 2.6 25.4 0 46-18.5 46-41.3S75.4 5 50 5zm0 77.6c-5.3 0-10.5-1.1-15.5-2.3l-9.3 2.5 2-8.5c-7-6.2-11.4-15-11.4-24.5 0-18.2 16.2-33 36.2-33s36.2 14.8 36.2 33-16.2 33-36.2 33zm16.1-23.7c-3.9 0-6.7 2.9-6.7 6.6 0 3.4 2 5.9 4.9 5.9 3.7 0 6.4-2.7 6.4-6.2 0-3.7-2.2-6.3-4.6-6.3zm-21.7 0c-3.9 0-6.7 2.9-6.7 6.6 0 3.4 2 5.9 4.9 5.9 3.7 0 6.4-2.7 6.4-6.2 0-3.7-2.2-6.3-4.6-6.3zm-6.7 34c1.7-3.3 5-4.3 7.6-3.8l1.8 2.6c.6.9 1.2 1.2 1.8.7l12.2-9.8c1-1.3 1.4-.5.5 1l-10 10.2c-.5.5-.4 1.2.1 1.7l6.2 5.7c2 1.9 4.3 1.1 5.3-1l1.6-3.3c.4-3 .4-5.2-1.5-6.1l-8.8 1.8c-8.8 4-20.2 10-20.2 10-1.4.6-1.6 1.7-.6 2.6l1.1 1z"/>
+    </svg>
+  </div>
+
+          <h3 style="font-family:var(--font-head);font-size:1.1rem;color:var(--navy);margin-bottom:8px;">WooCommerce</h3>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.5;">Seamlessly integrate real-time freight quotes into your checkout.</p>
+        </div>
+
+        <div class="reveal" style="background:var(--gray-light);border:1px solid var(--gray-mid);border-radius:16px;padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:var(--transition);cursor:pointer;" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--gray-mid)';this.style.transform='none'">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP" style="height:40px;object-fit:contain;margin-bottom:20px;filter:grayscale(100%);opacity:0.7;transition:0.3s;" onmouseover="this.style.filter='none';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)';this.style.opacity='0.7'">
+          <h3 style="font-family:var(--font-head);font-size:1.1rem;color:var(--navy);margin-bottom:8px;">SAP ERP</h3>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.5;">Enterprise-grade API for supply chain visibility and customs data.</p>
+        </div>
+
+        <div class="reveal" style="background:var(--gray-light);border:1px solid var(--gray-mid);border-radius:16px;padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:var(--transition);cursor:pointer;" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--gray-mid)';this.style.transform='none'">
+          <h3 style="font-family:var(--font-head);font-size:1.8rem;color:var(--navy);margin-bottom:12px;font-weight:900;">{ API }</h3>
+          <h3 style="font-family:var(--font-head);font-size:1.1rem;color:var(--navy);margin-bottom:8px;">Custom Webhooks</h3>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.5;">Build your own solutions with our comprehensive REST API endpoints.</p>
+        </div>
+
+      </div>
+    </div>
   </section>
+  
 
   <!-- ════════════════════════════════════════
        TRUSTED PARTNERS
@@ -2663,12 +4648,12 @@
       </div>
 
       <div class="contact-grid">
-        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:36px 28px;text-align:center;transition:var(--transition);border:1px solid var(--gray-mid);cursor:pointer;" class="reveal" onmouseover="this.style.borderColor='rgba(255,102,0,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--gray-mid)';this.style.transform='none'" onclick="window.location.href='mailto:contact@primelogisticstrace.com'">
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:36px 28px;text-align:center;transition:var(--transition);border:1px solid var(--gray-mid);cursor:pointer;" class="reveal" onmouseover="this.style.borderColor='rgba(255,102,0,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--gray-mid)';this.style.transform='none'" onclick="window.location.href='mailto:contact@nexshipment.com'">
           <div style="width:58px;height:58px;background:rgba(255,102,0,0.1);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;transition:var(--transition);">
             <svg width="24" height="24" fill="none" stroke="var(--orange)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </div>
           <h4 style="font-family:var(--font-head);font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:8px;">Email Us</h4>
-          <p style="color:var(--orange);font-size:0.88rem;font-weight:600;"><a href="mailto:contact@primelogisticstrace.com" style="color:inherit;text-decoration:none;">contact@primelogisticstrace.com</a></p>
+          <p style="color:var(--orange);font-size:0.88rem;font-weight:600;"><a href="mailto:contact@nexshipment.com" style="color:inherit;text-decoration:none;">contact@nexshipment.com</a></p>
           <p style="color:var(--text-light);font-size:0.75rem;margin-top:4px;">Response within 2 hours</p>
         </div>
 
@@ -2691,7 +4676,7 @@
     <div class="container">
       <div class="cta-inner reveal">
         <h2>Ready to Ship with Confidence?</h2>
-        <p>Join over 16,000 businesses worldwide that trust PrimeLogistics Trace for safe, reliable and transparent cargo delivery.</p>
+        <p>Join over 16,000 businesses worldwide that trust Nexshipment for safe, reliable and transparent cargo delivery.</p>
         <div class="cta-btns">
           <a href="#quote-section" class="cta-btn-primary">
             Get a Free Quote
@@ -2715,7 +4700,7 @@
         <!-- Brand -->
         <div>
           <div class="footer-logo">
-            <img src="Logo.png" alt="PrimeLogistics Trace" style="height: 48px; object-fit: contain; background: rgba(255, 255, 255, 0.95); padding: 5px 10px; border-radius: 6px;">
+            <img src="Logo.jpeg" alt="Nexshipment" style="height: 48px; object-fit: contain; background: rgba(255, 255, 255, 0.95); padding: 5px 10px; border-radius: 6px;">
           </div>
           <p class="footer-desc">The world's most trusted real-time logistics tracking platform. Precision, transparency and reliability — across every ocean, border and mile.</p>
           <div class="footer-socials">
@@ -2747,7 +4732,7 @@
           </div>
           <div class="footer-contact-item">
             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <p>contact@primelogisticstrace.com</p>
+            <p>contact@nexshipment.com</p>
           </div>
         </div>
 
@@ -2766,7 +4751,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 PrimeLogistics Trace. All rights reserved.</p>
+        <p>© 2019 Nexshipment. All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>

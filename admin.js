@@ -1,15 +1,15 @@
 /* ==========================================
-   PrimeLogistics Trace � Command Centre JS
+   Nexshipment � Command Centre JS
    ==========================================*/
 'use strict';
 
 // --- Supabase ---
-const SUPABASE_URL = 'https://qnxthmvhimyiysusfvpp.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFueHRobXZoaW15aXlzdXNmdnBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMzA3NTMsImV4cCI6MjA5NzYwNjc1M30.b8MsBfMvx-Pq74WirwrEQ31mM65aFtgxQLAgLycVBuA';
+const SUPABASE_URL = 'https://rmbfhrmiuaezjopqtccx.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtYmZocm1pdWFlempvcHF0Y2N4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTY5MDcsImV4cCI6MjA5OTM3MjkwN30.4jYoBn_MNKln73hKp9hzFuOgpIat_IFDLQV-LIux0eo';
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/send-shipment-email`;
 
-const ADMIN_CREDS = { username: 'admin', password: 'PrimeLogistics2026!' };
+const ADMIN_CREDS = { username: 'admin', password: 'Nexshipment2026!' };
 
 let allShipments = [];
 let adminMap = null;
@@ -580,7 +580,7 @@ async function geocodePromise(_, address) {
   const encoded = encodeURIComponent(address);
   const url = `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`;
   const res = await fetch(url, {
-    headers: { 'Accept-Language': 'en', 'User-Agent': 'PrimeLogistics TraceTrace/1.0' }
+    headers: { 'Accept-Language': 'en', 'User-Agent': 'NexshipmentTrace/1.0' }
   });
   const data = await res.json();
   if (data && data.length > 0) {
@@ -1133,13 +1133,13 @@ function getEmailTemplate(p) {
     "In Transit": { color: "#ea580c", label: "In Transit", message: "Your shipment is currently moving through our network towards its destination." },
     "Customs Hold": { color: "#dc2626", label: "Customs Hold", message: "Your shipment is currently undergoing standard customs clearance procedures." },
     "Customs Cleared": { color: "#16a34a", label: "Customs Cleared", message: "Your shipment has successfully cleared customs and is continuing its journey." },
-    "Out for Delivery": { color: "#2563eb", label: "Out for Delivery", message: "Your package is on the delivery vehicle and will arrive today. Please ensure someone is available to receive it." },
-    "Delivered": { color: "#16a34a", label: "Delivered", message: "Your shipment has been successfully delivered. Thank you for choosing PrimeLogistics Trace." },
+    "Out for Delivery": { color: "#F97316", label: "Out for Delivery", message: "Your package is on the delivery vehicle and will arrive today. Please ensure someone is available to receive it." },
+    "Delivered": { color: "#16a34a", label: "Delivered", message: "Your shipment has been successfully delivered. Thank you for choosing Nexshipment." },
     "On Hold": { color: "#d97706", label: "On Hold", message: "Your shipment is temporarily on hold. Please check the tracking page or contact support for details." }
   }[p.status] || { color: "#ea580c", label: "Status Updated", message: "Your shipment status has been updated. Please check your tracking page for the latest information." };
 
   const dateStr = new Date(p.updated_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
-  const trackUrl = `https://primelogisticstrace.com/index.html?track=${encodeURIComponent(p.tracking_number)}`;
+  const trackUrl = `https://Nexshipmenttrace.com/index.html?track=${encodeURIComponent(p.tracking_number)}`;
   const hasReason = p.status_reason && p.status_reason.trim() !== "";
 
   return `<!DOCTYPE html>
@@ -1158,7 +1158,7 @@ function getEmailTemplate(p) {
           <!-- Header -->
           <tr>
             <td style="padding:32px 40px;border-bottom:1px solid #e5e7eb;background-color:#ffffff;text-align:center;">
-              <img src="https://primelogisticstrace.com/Logo.png" alt="PrimeLogistics Trace" style="height:48px;width:auto;display:block;margin:0 auto;">
+              <img src="https://Nexshipmenttrace.com/Logo.jpeg" alt="Nexshipment" style="height:48px;width:auto;display:block;margin:0 auto;">
             </td>
           </tr>
 
@@ -1222,10 +1222,10 @@ function getEmailTemplate(p) {
             <td style="background-color:#f9fafb;padding:32px 40px;text-align:center;border-top:1px solid #e5e7eb;">
               <p style="margin:0 0 12px;color:#6b7280;font-size:13px;line-height:1.5;">
                 <strong>Need help?</strong> Contact our support team at<br>
-                <a href="mailto:contact@primelogisticstrace.com" style="color:#FF8C00;text-decoration:none;">contact@primelogisticstrace.com</a>
+                <a href="mailto:contact@Nexshipmenttrace.com" style="color:#FF8C00;text-decoration:none;">contact@Nexshipmenttrace.com</a>
               </p>
               <p style="margin:0;color:#9ca3af;font-size:12px;line-height:1.5;">
-                &copy; 2026 PrimeLogistics Trace. All rights reserved.<br>
+                &copy; 2026 Nexshipment. All rights reserved.<br>
                 1400 Logistics Blvd, Houston, TX 77032, United States
               </p>
             </td>

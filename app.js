@@ -1,5 +1,5 @@
 /* ==========================================
-   PrimeLogistics Trace — Main App JavaScript
+   Nexshipment — Main App JavaScript
    ==========================================
    Modules:
      1. Supabase Client
@@ -16,8 +16,8 @@
 // ─────────────────────────────────────────
 // 1. SUPABASE CLIENT
 // ─────────────────────────────────────────
-const SUPABASE_URL = 'https://qnxthmvhimyiysusfvpp.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFueHRobXZoaW15aXlzdXNmdnBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMzA3NTMsImV4cCI6MjA5NzYwNjc1M30.b8MsBfMvx-Pq74WirwrEQ31mM65aFtgxQLAgLycVBuA';
+const SUPABASE_URL = 'https://rmbfhrmiuaezjopqtccx.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtYmZocm1pdWFlempvcHF0Y2N4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTY5MDcsImV4cCI6MjA5OTM3MjkwN30.4jYoBn_MNKln73hKp9hzFuOgpIat_IFDLQV-LIux0eo';
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -146,7 +146,7 @@ const MapController = (() => {
     const url = `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`;
     try {
       const res = await fetch(url, {
-        headers: { 'Accept-Language': 'en', 'User-Agent': 'PrimeLogistics TraceTrace/1.0' }
+        headers: { 'Accept-Language': 'en', 'User-Agent': 'NexshipmentTrace/1.0' }
       });
       const data = await res.json();
       if (data && data.length > 0) {
@@ -1314,7 +1314,7 @@ window.downloadWaybill = function() {
   if (!shipment) return;
 
   const content = `
-    PrimeLogistics Trace — OFFICIAL WAYBILL
+    Nexshipment — OFFICIAL WAYBILL
     ========================================
     Tracking Number: ${shipment.tracking_number}
     Status:          ${shipment.status}
@@ -1333,8 +1333,8 @@ window.downloadWaybill = function() {
     Generated: ${new Date().toLocaleString()}
     Coordinates: ${shipment.lat?.toFixed(4)}, ${shipment.lng?.toFixed(4)}
     
-    This is an official waybill from PrimeLogistics Trace.
-    primelogisticstrace.com | contact@primelogisticstrace.com
+    This is an official waybill from Nexshipment.
+    Nexshipmenttrace.com | contact@Nexshipmenttrace.com
   `;
 
   const blob = new Blob([content], { type: 'text/plain' });
@@ -1355,7 +1355,7 @@ window.shareTracking = function() {
   const url = `${window.location.origin}${window.location.pathname}?track=${shipment.tracking_number}`;
 
   if (navigator.share) {
-    navigator.share({ title: 'PrimeLogistics Trace', text: `Track shipment ${shipment.tracking_number}`, url });
+    navigator.share({ title: 'Nexshipment', text: `Track shipment ${shipment.tracking_number}`, url });
   } else {
     navigator.clipboard.writeText(url).then(() => {
       UIController.showRealtimeNotification('🔗 Tracking link copied to clipboard!');
@@ -1387,6 +1387,6 @@ document.addEventListener('DOMContentLoaded', () => {
   QuoteFormHandler.init();
   checkURLTracking();
 
-  console.log('%c🚚 PrimeLogistics Trace', 'color: #FF8C00; font-size: 18px; font-weight: bold;');
+  console.log('%c🚚 Nexshipment', 'color: #FF8C00; font-size: 18px; font-weight: bold;');
   console.log('%cPowered by Supabase Realtime + Google Maps', 'color: #050A30; font-size: 12px;');
 });
