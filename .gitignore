@@ -1,9 +1,7 @@
 # Large media files (too big for GitHub without LFS)
-*.mp4
 *.mov
 *.avi
 *.mkv
-*.jfif
 *.webm
 
 # Temp build/fix scripts (not needed in repo)
