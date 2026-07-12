@@ -1128,112 +1128,171 @@ function showEmailResultDialog({ success, email, tracking, errMsg }) {
 
 // ── Build premium HTML email ───────────────────────────────────────────────────
 function getEmailTemplate(p) {
-  const cfg = {
-    "Order Placed": { color: "#4f46e5", label: "Order Placed", message: "We have received your shipment details and are preparing it for dispatch." },
-    "In Transit": { color: "#ea580c", label: "In Transit", message: "Your shipment is currently moving through our network towards its destination." },
-    "Customs Hold": { color: "#dc2626", label: "Customs Hold", message: "Your shipment is currently undergoing standard customs clearance procedures." },
-    "Customs Cleared": { color: "#16a34a", label: "Customs Cleared", message: "Your shipment has successfully cleared customs and is continuing its journey." },
-    "Out for Delivery": { color: "#F97316", label: "Out for Delivery", message: "Your package is on the delivery vehicle and will arrive today. Please ensure someone is available to receive it." },
-    "Delivered": { color: "#16a34a", label: "Delivered", message: "Your shipment has been successfully delivered. Thank you for choosing Nexshipment." },
-    "On Hold": { color: "#d97706", label: "On Hold", message: "Your shipment is temporarily on hold. Please check the tracking page or contact support for details." }
-  }[p.status] || { color: "#ea580c", label: "Status Updated", message: "Your shipment status has been updated. Please check your tracking page for the latest information." };
+  const statusCfg = {
+    'Order Placed':      { color:'#4f46e5', gradStart:'#4f46e5', gradEnd:'#7c3aed', icon:'📋', badge:'ORDER CONFIRMED',  headline:'Your Order Has Been Confirmed',     body:'We have successfully received your shipment request and our team is preparing it for dispatch. You will receive further updates as your shipment progresses through our network.' },
+    'In Transit':        { color:'#FF8C00', gradStart:'#FF8C00', gradEnd:'#ea580c', icon:'✈️', badge:'IN TRANSIT',        headline:'Your Shipment Is On Its Way',        body:'Great news! Your shipment is actively moving through our logistics network. Our team is monitoring its progress to ensure it reaches you safely and on time.' },
+    'Customs Hold':      { color:'#dc2626', gradStart:'#dc2626', gradEnd:'#991b1b', icon:'🔒', badge:'CUSTOMS HOLD',      headline:'Your Shipment Requires Attention',   body:'Your shipment has been temporarily held at customs for inspection. This is a standard procedure for international shipments. Our team is actively working to resolve this as quickly as possible.' },
+    'Customs Cleared':   { color:'#059669', gradStart:'#059669', gradEnd:'#047857', icon:'✅', badge:'CUSTOMS CLEARED',   headline:'Customs Clearance Successful',      body:'Excellent news! Your shipment has successfully passed all customs inspections and is now continuing its journey to the final destination.' },
+    'Out for Delivery':  { color:'#d97706', gradStart:'#d97706', gradEnd:'#b45309', icon:'🚚', badge:'OUT FOR DELIVERY',  headline:'Your Package Arrives Today',        body:'Your shipment is now on the delivery vehicle and is scheduled to arrive at your address today. Please ensure someone is available to receive the package.' },
+    'Delivered':         { color:'#16a34a', gradStart:'#16a34a', gradEnd:'#15803d', icon:'🎉', badge:'DELIVERED',         headline:'Your Shipment Has Been Delivered',  body:'Your shipment has been successfully delivered to the destination address. Thank you for trusting Nexshipment with your logistics needs. We hope to serve you again.' },
+    'On Hold':           { color:'#b45309', gradStart:'#b45309', gradEnd:'#92400e', icon:'⏸️', badge:'ON HOLD',           headline:'Your Shipment Is Currently On Hold', body:'Your shipment has been temporarily placed on hold. Our support team has been notified and will work to resolve the issue promptly. Please do not hesitate to contact us for more details.' },
+  };
+  const cfg = statusCfg[p.status] || { color:'#4f46e5', gradStart:'#4f46e5', gradEnd:'#7c3aed', icon:'📦', badge:'STATUS UPDATE', headline:'Your Shipment Status Has Been Updated', body:'Your shipment status has been updated. Please check your tracking page for the latest information.' };
 
-  const dateStr = new Date(p.updated_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
-  const trackUrl = `https://Nexshipmenttrace.com/index.html?track=${encodeURIComponent(p.tracking_number)}`;
-  const hasReason = p.status_reason && p.status_reason.trim() !== "";
+  const dateStr = new Date(p.updated_at).toLocaleString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' });
+  const trackUrl = `https://nexshipment.com/track.html?track=${encodeURIComponent(p.tracking_number)}`;
+  const hasReason = p.status_reason && p.status_reason.trim() !== '';
+  const year = new Date().getFullYear();
 
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Shipment Update — ${p.tracking_number}</title>
 </head>
-<body style="margin:0;padding:0;background-color:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1f2937;">
-  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#f3f4f6;padding:40px 20px;">
+<body style="margin:0;padding:0;background-color:#eef2f7;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+
+<!-- Preheader (hidden) -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${cfg.headline} — Tracking #${p.tracking_number} · Nexshipment</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#eef2f7;min-height:100vh;">
+<tr><td align="center" style="padding:40px 16px;">
+
+  <!-- Outer card -->
+  <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+
+    <!-- ── LOGO BAR ── -->
     <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;border:1px solid #e5e7eb;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);overflow:hidden;">
-          
-          <!-- Header -->
+      <td style="background:#0b1120;border-radius:16px 16px 0 0;padding:24px 40px;text-align:center;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td style="text-align:left;">
+            <span style="color:#ffffff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">NEX<span style="color:#FF8C00;">SHIPMENT</span></span>
+          </td>
+          <td style="text-align:right;">
+            <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;letter-spacing:0.5px;">SHIPMENT NOTIFICATION</span>
+          </td>
+        </tr></table>
+      </td>
+    </tr>
+
+    <!-- ── GRADIENT HERO BANNER ── -->
+    <tr>
+      <td style="background:linear-gradient(135deg,${cfg.gradStart} 0%,${cfg.gradEnd} 100%);padding:44px 40px;text-align:center;">
+        <div style="font-size:52px;line-height:1;margin-bottom:16px;">${cfg.icon}</div>
+        <div style="display:inline-block;background:rgba(255,255,255,0.18);color:#ffffff;font-size:10px;font-weight:800;letter-spacing:2px;padding:5px 16px;border-radius:20px;margin-bottom:16px;">${cfg.badge}</div>
+        <h1 style="margin:0;color:#ffffff;font-size:26px;font-weight:700;line-height:1.3;letter-spacing:-0.3px;">${cfg.headline}</h1>
+        <p style="margin:14px 0 0;color:rgba(255,255,255,0.85);font-size:15px;line-height:1.6;">${cfg.body}</p>
+      </td>
+    </tr>
+
+    <!-- ── TRACKING CARD ── -->
+    <tr>
+      <td style="background:#ffffff;padding:0 40px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #e5e7eb;border-radius:12px;margin:32px 0;overflow:hidden;">
+
+          <!-- Card header -->
           <tr>
-            <td style="padding:32px 40px;border-bottom:1px solid #e5e7eb;background-color:#ffffff;text-align:center;">
-              <img src="https://Nexshipmenttrace.com/Logo.jpeg" alt="Nexshipment" style="height:48px;width:auto;display:block;margin:0 auto;">
+            <td colspan="2" style="background:#f8fafc;border-bottom:1px solid #e5e7eb;padding:14px 20px;">
+              <span style="color:#6b7280;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;">Shipment Details</span>
             </td>
           </tr>
 
-          <!-- Banner -->
+          <!-- Tracking ID -->
           <tr>
-            <td style="background-color:${cfg.color};padding:24px 40px;text-align:center;">
-              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:600;letter-spacing:-0.02em;">Shipment ${cfg.label}</h1>
+            <td style="padding:16px 20px;border-bottom:1px solid #f1f5f9;width:38%;">
+              <span style="color:#9ca3af;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">Tracking Number</span>
+            </td>
+            <td style="padding:16px 20px;border-bottom:1px solid #f1f5f9;">
+              <span style="color:#111827;font-size:15px;font-weight:700;font-family:monospace;letter-spacing:0.5px;">${p.tracking_number}</span>
             </td>
           </tr>
 
-          <!-- Content -->
+          <!-- Status -->
           <tr>
-            <td style="padding:40px;">
-              <p style="margin:0 0 24px;font-size:16px;line-height:1.6;color:#4b5563;">
-                Dear Customer,
-                <br><br>
-                ${cfg.message}
-              </p>
-
-              <!-- Details Box -->
-              <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;margin-bottom:32px;">
-                <tr>
-                  <td style="padding:24px;">
-                    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                      <tr>
-                        <td style="padding-bottom:12px;width:140px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Tracking ID</td>
-                        <td style="padding-bottom:12px;color:#111827;font-size:15px;font-weight:600;">${p.tracking_number}</td>
-                      </tr>
-                      <tr>
-                        <td style="padding-bottom:12px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Status</td>
-                        <td style="padding-bottom:12px;color:${cfg.color};font-size:15px;font-weight:700;">${p.status}</td>
-                      </tr>
-                      <tr>
-                        <td style="color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Last Updated</td>
-                        <td style="color:#4b5563;font-size:14px;">${dateStr}</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-
-              ${hasReason ? `
-              <div style="margin-bottom:32px;padding-left:16px;border-left:4px solid ${cfg.color};">
-                <p style="margin:0;color:#6b7280;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Status Note</p>
-                <p style="margin:0;color:#374151;font-size:15px;line-height:1.5;">${p.status_reason}</p>
-              </div>` : ""}
-
-              <!-- CTA -->
-              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td align="center">
-                    <a href="${trackUrl}" style="display:inline-block;background-color:#FF8C00;color:#ffffff;text-decoration:none;padding:14px 32px;border-radius:6px;font-size:16px;font-weight:600;letter-spacing:0.02em;">Track Shipment</a>
-                  </td>
-                </tr>
-              </table>
+            <td style="padding:16px 20px;border-bottom:1px solid #f1f5f9;">
+              <span style="color:#9ca3af;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">Current Status</span>
+            </td>
+            <td style="padding:16px 20px;border-bottom:1px solid #f1f5f9;">
+              <span style="display:inline-block;background:${cfg.color}18;color:${cfg.color};font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;border:1px solid ${cfg.color}30;">${p.status}</span>
             </td>
           </tr>
 
-          <!-- Footer -->
+          <!-- Updated -->
           <tr>
-            <td style="background-color:#f9fafb;padding:32px 40px;text-align:center;border-top:1px solid #e5e7eb;">
-              <p style="margin:0 0 12px;color:#6b7280;font-size:13px;line-height:1.5;">
-                <strong>Need help?</strong> Contact our support team at<br>
-                <a href="mailto:contact@Nexshipmenttrace.com" style="color:#FF8C00;text-decoration:none;">contact@Nexshipmenttrace.com</a>
-              </p>
-              <p style="margin:0;color:#9ca3af;font-size:12px;line-height:1.5;">
-                &copy; 2026 Nexshipment. All rights reserved.<br>
-                1400 Logistics Blvd, Houston, TX 77032, United States
-              </p>
+            <td style="padding:16px 20px;">
+              <span style="color:#9ca3af;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">Last Updated</span>
+            </td>
+            <td style="padding:16px 20px;">
+              <span style="color:#374151;font-size:13px;">${dateStr}</span>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+
+    <!-- ── STATUS NOTE (if provided) ── -->
+    ${hasReason ? `
+    <tr>
+      <td style="background:#ffffff;padding:0 40px 4px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${cfg.color}0d;border:1px solid ${cfg.color}30;border-left:4px solid ${cfg.color};border-radius:8px;">
+          <tr>
+            <td style="padding:18px 20px;">
+              <p style="margin:0 0 6px;color:${cfg.color};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Note from our team</p>
+              <p style="margin:0;color:#374151;font-size:14px;line-height:1.6;">${p.status_reason}</p>
             </td>
           </tr>
         </table>
       </td>
+    </tr>` : ''}
+
+    <!-- ── CTA BUTTON ── -->
+    <tr>
+      <td style="background:#ffffff;padding:28px 40px 36px;text-align:center;">
+        <a href="${trackUrl}" style="display:inline-block;background:linear-gradient(135deg,#FF8C00,#e67e00);color:#ffffff;text-decoration:none;padding:16px 40px;border-radius:10px;font-size:16px;font-weight:700;letter-spacing:0.3px;box-shadow:0 4px 15px rgba(255,140,0,0.35);">📍 Track My Shipment</a>
+        <p style="margin:16px 0 0;color:#9ca3af;font-size:12px;">Or visit: <a href="${trackUrl}" style="color:#FF8C00;text-decoration:none;">${trackUrl}</a></p>
+      </td>
     </tr>
+
+    <!-- ── DIVIDER ── -->
+    <tr>
+      <td style="background:#ffffff;padding:0 40px;">
+        <hr style="border:none;border-top:1px solid #e5e7eb;margin:0;">
+      </td>
+    </tr>
+
+    <!-- ── SUPPORT ROW ── -->
+    <tr>
+      <td style="background:#ffffff;padding:28px 40px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td style="width:50%;padding-right:16px;">
+            <p style="margin:0 0 4px;color:#374151;font-size:13px;font-weight:600;">📧 Email Support</p>
+            <a href="mailto:contact@nexshipment.com" style="color:#FF8C00;font-size:13px;text-decoration:none;">contact@nexshipment.com</a>
+          </td>
+          <td style="width:50%;padding-left:16px;border-left:1px solid #f1f5f9;">
+            <p style="margin:0 0 4px;color:#374151;font-size:13px;font-weight:600;">🌐 Track Online</p>
+            <a href="https://nexshipment.com" style="color:#FF8C00;font-size:13px;text-decoration:none;">nexshipment.com</a>
+          </td>
+        </tr></table>
+      </td>
+    </tr>
+
+    <!-- ── FOOTER ── -->
+    <tr>
+      <td style="background:#0b1120;border-radius:0 0 16px 16px;padding:28px 40px;text-align:center;">
+        <p style="margin:0 0 8px;color:rgba(255,255,255,0.9);font-size:14px;font-weight:700;">NEX<span style="color:#FF8C00;">SHIPMENT</span></p>
+        <p style="margin:0 0 12px;color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">1400 Logistics Blvd, Houston, TX 77032, United States</p>
+        <p style="margin:0;color:rgba(255,255,255,0.25);font-size:11px;">© ${year} Nexshipment. All rights reserved. · <a href="https://nexshipment.com" style="color:rgba(255,255,255,0.35);text-decoration:none;">nexshipment.com</a></p>
+        <p style="margin:12px 0 0;color:rgba(255,255,255,0.2);font-size:10px;">You received this email because you have a shipment registered with Nexshipment. Do not reply to this automated message.</p>
+      </td>
+    </tr>
+
   </table>
+</td></tr>
+</table>
+
 </body>
 </html>`;
 }
@@ -1290,7 +1349,7 @@ async function handleUpdateWithEmail(shipmentData, shouldNotify) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'Nexshipment <contact@nexshipmenttrace.com>',
+          from: 'Nexshipment <contact@nexshipment.com>',
           to: [client_email],
           subject: subject,
           html: htmlBody
