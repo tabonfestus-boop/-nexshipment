@@ -1265,34 +1265,50 @@ async function handleUpdateWithEmail(shipmentData, shouldNotify) {
       return;
     }
 
-    toast(`📧 Sending premium email to ${client_email}…`);
+    toast(`📧 Sending notification email to ${client_email}…`);
 
     try {
       const htmlBody = getEmailTemplate({ tracking_number, status, status_reason, updated_at: isoDate });
-      
-      const res = await fetch("/api/send-email", {
-        method: "POST",
+
+      // Determine a professional subject line based on status
+      const subjectMap = {
+        'Order Placed':      `Your Shipment Has Been Confirmed — ${tracking_number}`,
+        'In Transit':        `Your Shipment Is On Its Way — ${tracking_number}`,
+        'Customs Hold':      `Action Required: Shipment on Customs Hold — ${tracking_number}`,
+        'Customs Cleared':   `Great News! Customs Cleared — ${tracking_number}`,
+        'Out for Delivery':  `Out for Delivery Today — ${tracking_number}`,
+        'Delivered':         `Delivered! Your Shipment Has Arrived — ${tracking_number}`,
+        'On Hold':           `Shipment On Hold — ${tracking_number}`,
+      };
+      const subject = subjectMap[status] || `Shipment Update: ${status} — ${tracking_number}`;
+
+      // Call Resend API directly
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Authorization': 'Bearer re_E1MPKxUR_9Jquyp7G2ECXjwg6NLLpjK5p',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          client_email,
-          tracking_number,
-          status,
-          htmlBody
+          from: 'Nexshipment <contact@nexshipmenttrace.com>',
+          to: [client_email],
+          subject: subject,
+          html: htmlBody
         })
       });
 
-      if (res.ok) {
-        log(`✅ ${tracking_number}: status → ${status} | Email sent to ${client_email}`);
+      const resData = await res.json().catch(() => ({}));
+
+      if (res.ok && resData.id) {
+        log(`✅ ${tracking_number}: status → ${status} | Email sent to ${client_email} (id: ${resData.id})`);
         showEmailResultDialog({ success: true, email: client_email, tracking: tracking_number });
       } else {
-        const errorText = await res.text();
-        console.error('[PLT] ✗ Email send failed:', errorText);
-        showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: `Resend API Error: ${res.status}` });
+        const errMsg = resData?.message || resData?.name || `HTTP ${res.status}`;
+        console.error('[Resend] ✗ Email send failed:', resData);
+        showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: `Resend: ${errMsg}` });
       }
     } catch (fetchErr) {
-      console.error('[PLT] ✗ Network/CORS error:', fetchErr);
+      console.error('[Resend] ✗ Network error:', fetchErr);
       log(`⚠️ ${tracking_number}: network error sending email`);
       showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: fetchErr.message || 'Network error — check console' });
     }
