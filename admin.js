@@ -1341,16 +1341,18 @@ async function handleUpdateWithEmail(shipmentData, shouldNotify) {
       };
       const subject = subjectMap[status] || `Shipment Update: ${status} — ${tracking_number}`;
 
-      // Call Resend API directly
-      const res = await fetch('https://api.resend.com/emails', {
+      // Call the Supabase Edge Function (server-side proxy — avoids CORS block)
+      const SUPABASE_URL  = 'https://rmbfhrmiuaezjopqtccx.supabase.co';
+      const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtYmZocm1pdWFlempvcHF0Y2N4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTY5MDcsImV4cCI6MjA5OTM3MjkwN30.4jYoBn_MNKln73hKp9hzFuOgpIat_IFDLQV-LIux0eo';
+
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer re_E1MPKxUR_9Jquyp7G2ECXjwg6NLLpjK5p',
+          'Authorization': `Bearer ${SUPABASE_ANON}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'Nexshipment <contact@nexshipment.com>',
-          to: [client_email],
+          to: client_email,
           subject: subject,
           html: htmlBody
         })
@@ -1358,13 +1360,13 @@ async function handleUpdateWithEmail(shipmentData, shouldNotify) {
 
       const resData = await res.json().catch(() => ({}));
 
-      if (res.ok && resData.id) {
+      if (res.ok && resData.success) {
         log(`✅ ${tracking_number}: status → ${status} | Email sent to ${client_email} (id: ${resData.id})`);
         showEmailResultDialog({ success: true, email: client_email, tracking: tracking_number });
       } else {
-        const errMsg = resData?.message || resData?.name || `HTTP ${res.status}`;
-        console.error('[Resend] ✗ Email send failed:', resData);
-        showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: `Resend: ${errMsg}` });
+        const errMsg = resData?.error || resData?.message || `HTTP ${res.status}`;
+        console.error('[Email] ✗ Failed:', resData);
+        showEmailResultDialog({ success: false, email: client_email, tracking: tracking_number, errMsg: `Email error: ${errMsg}` });
       }
     } catch (fetchErr) {
       console.error('[Resend] ✗ Network error:', fetchErr);
