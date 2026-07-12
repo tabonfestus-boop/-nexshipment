@@ -919,41 +919,71 @@
   })();
   </script>
 
-  <!-- Leaflet.js Map (replaces Google Maps - no API key required) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <style>
-    #track-map .leaflet-container { background: #061422; }
-    #track-map .leaflet-tile { filter: brightness(0.85) saturate(0.8) hue-rotate(200deg); }
-    /* Dark themed tiles override */
-    .leaflet-control-zoom a { background:#0B2545!important; color:#F26419!important; border-color:#1e3a5f!important; }
-    .leaflet-control-zoom a:hover { background:#F26419!important; color:#fff!important; }
-    @keyframes trackPulse{0%{transform:scale(0.7);opacity:0.9}100%{transform:scale(2.4);opacity:0}}
-    @keyframes leafletDrop{0%{transform:translateY(-40px);opacity:0}100%{transform:translateY(0);opacity:1}}
-    .transport-marker-wrap { animation: leafletDrop 0.4s ease-out; }
-    .pulse-ring {
-      position:absolute; width:60px; height:60px; margin-left:-30px; margin-top:-30px;
-      border-radius:50%; border:3px solid #FF8C00;
-      animation:trackPulse 1.9s ease-out infinite; opacity:0; pointer-events:none;
-    }
-    .pulse-ring.delay { animation-delay:0.65s; border-width:2px; border-color:rgba(255,140,0,0.4); }
-  </style>
+  <!-- Google Maps -->
   <script>
-  /* ─────────────────────────────────────────────────────────────
-     LEAFLET MAP IMPLEMENTATION — Nexshipment Tracking
-     Replaces Google Maps with free OpenStreetMap tiles
-  ───────────────────────────────────────────────────────────── */
-  window._mapReady = true;   // Leaflet is synchronous — always ready
+  window._mapReady = false;
   window._pendingShipment = null;
 
+  window.initTrackMap = function() {
+    window._mapReady = true;
+    if (window._pendingShipment) {
+      drawMap(window._pendingShipment);
+      window._pendingShipment = null;
+    }
+  };
+
+  const MIDNIGHT_STYLE = [
+    { elementType:'geometry', stylers:[{color:'#1a2744'}] },
+    { elementType:'labels.text.fill', stylers:[{color:'#aec9d4'}] },
+    { elementType:'labels.text.stroke', stylers:[{color:'#0f1e38'}] },
+    { featureType:'administrative.country', elementType:'geometry.stroke', stylers:[{color:'#3d6680'},{weight:1.5}] },
+    { featureType:'landscape', elementType:'geometry', stylers:[{color:'#1a2744'}] },
+    { featureType:'poi', stylers:[{visibility:'off'}] },
+    { featureType:'road', elementType:'geometry', stylers:[{color:'#243a5e'}] },
+    { featureType:'transit', stylers:[{visibility:'off'}] },
+    { featureType:'water', elementType:'geometry', stylers:[{color:'#061422'}] },
+  ];
+
   let _map = null, _transportMarker = null, _plannedLine = null, _traveledLine = null;
-  let _stopMarkers = [], _pulseLayer = null, _animId = null;
+  let _stopMarkers = [], _pulseOverlay = null, _PulseClass = null, _animId = null;
 
-  /* ── Dark tile layer URL ─────────────────────────────────── */
-  const DARK_TILES = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-  const TILE_ATTR  = '&copy; <a href="https://carto.com/">CARTO</a>';
+  function ensurePulse() {
+    if (_PulseClass) return;
+    _PulseClass = class extends google.maps.OverlayView {
+      constructor(pos) { super(); this._pos = pos; this._div = null; }
+      onAdd() {
+        const d = document.createElement('div');
+        d.style.cssText = 'position:absolute;width:0;height:0;pointer-events:none;z-index:5;';
+        d.innerHTML = `
+          <div style="position:absolute;width:66px;height:66px;margin-left:-33px;margin-top:-33px;border-radius:50%;border:3px solid #FF8C00;animation:trackPulse 1.9s ease-out infinite;opacity:0;"></div>
+          <div style="position:absolute;width:66px;height:66px;margin-left:-33px;margin-top:-33px;border-radius:50%;border:2px solid rgba(255,140,0,0.4);animation:trackPulse 1.9s ease-out 0.65s infinite;opacity:0;"></div>`;
+        if (!document.getElementById('track-pulse-style')) {
+          const s = document.createElement('style');
+          s.id = 'track-pulse-style';
+          s.textContent = '@keyframes trackPulse{0%{transform:scale(0.7);opacity:0.9}100%{transform:scale(2.4);opacity:0}}';
+          document.head.appendChild(s);
+        }
+        this._div = d;
+        this.getPanes().overlayMouseTarget.appendChild(d);
+      }
+      draw() {
+        if (!this._div) return;
+        const p = this.getProjection().fromLatLngToDivPixel(this._pos);
+        this._div.style.left = p.x + 'px'; this._div.style.top = p.y + 'px';
+      }
+      onRemove() { if (this._div) { this._div.parentNode?.removeChild(this._div); this._div = null; } }
+      moveTo(pos) { this._pos = pos; this.draw(); }
+    };
+  }
 
-  /* ── Transport SVG icons (same designs as before) ───────── */
+  function clearMap() {
+    if (_animId) { cancelAnimationFrame(_animId); _animId = null; }
+    [_transportMarker, _plannedLine, _traveledLine].forEach(x => x?.setMap(null));
+    _transportMarker = _plannedLine = _traveledLine = null;
+    _stopMarkers.forEach(m => m.setMap(null)); _stopMarkers = [];
+    if (_pulseOverlay) { _pulseOverlay.setMap(null); _pulseOverlay = null; }
+  }
+
   function getTransportSVG(type) {
     const svgs = {
       plane: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="56" height="56"><circle cx="28" cy="28" r="26" fill="#050A30" stroke="#FF8C00" stroke-width="2.5"/><path d="M42 22 L28 36 L14 22 L28 27 Z" fill="#FF8C00"/><path d="M24 31 L20 44 L28 40 L36 44 L32 31" fill="#FF8C00" opacity="0.75"/></svg>`,
@@ -961,46 +991,9 @@
       bus:   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 46" width="72" height="46"><rect x="4" y="4" width="64" height="30" rx="6" fill="#050A30" stroke="#FF8C00" stroke-width="2"/><rect x="8" y="8" width="14" height="12" rx="2" fill="rgba(255,140,0,0.3)"/><rect x="26" y="8" width="14" height="12" rx="2" fill="rgba(255,140,0,0.3)"/><rect x="44" y="8" width="14" height="12" rx="2" fill="rgba(255,140,0,0.3)"/><circle cx="16" cy="40" r="6" fill="#050A30" stroke="#FF8C00" stroke-width="2"/><circle cx="56" cy="40" r="6" fill="#050A30" stroke="#FF8C00" stroke-width="2"/></svg>`,
       train: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78 46" width="78" height="46"><rect x="2" y="2" width="74" height="28" rx="5" fill="#050A30" stroke="#FF8C00" stroke-width="2"/><rect x="7" y="6" width="16" height="12" rx="2" fill="rgba(255,140,0,0.3)"/><rect x="29" y="6" width="16" height="12" rx="2" fill="rgba(255,140,0,0.3)"/><rect x="51" y="6" width="16" height="12" rx="2" fill="rgba(255,140,0,0.3)"/></svg>`,
     };
-    const svg = (svgs[type] || svgs.plane).trim();
-    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent((svgs[type] || svgs.plane).trim());
   }
 
-  function makeLeafletIcon(svgUrl, w, h, ax, ay) {
-    return L.icon({ iconUrl: svgUrl, iconSize: [w, h], iconAnchor: [ax, ay], popupAnchor: [0, -ay] });
-  }
-
-  function makeSvgIcon(svgStr, w, h) {
-    return L.divIcon({
-      html: `<div class="transport-marker-wrap">${svgStr}</div>`,
-      iconSize: [w, h], iconAnchor: [w/2, h/2], className: ''
-    });
-  }
-
-  /* ── Ensure map is initialised ──────────────────────────── */
-  function ensureMap() {
-    if (_map) return;
-    _map = L.map('track-map', {
-      center: [29.7604, -95.3698], zoom: 3,
-      zoomControl: true, attributionControl: true,
-    });
-    L.tileLayer(DARK_TILES, {
-      attribution: TILE_ATTR,
-      subdomains: 'abcd', maxZoom: 19
-    }).addTo(_map);
-    _map.zoomControl.setPosition('bottomright');
-  }
-
-  /* ── Clear all map layers ───────────────────────────────── */
-  function clearMap() {
-    if (_animId) { cancelAnimationFrame(_animId); _animId = null; }
-    if (_transportMarker) { _map.removeLayer(_transportMarker); _transportMarker = null; }
-    if (_plannedLine)     { _map.removeLayer(_plannedLine);     _plannedLine = null; }
-    if (_traveledLine)    { _map.removeLayer(_traveledLine);    _traveledLine = null; }
-    _stopMarkers.forEach(m => _map.removeLayer(m)); _stopMarkers = [];
-    if (_pulseLayer)      { _map.removeLayer(_pulseLayer);      _pulseLayer = null; }
-  }
-
-  /* ── Geocode via Nominatim (free, no key) ───────────────── */
   async function geocode(address) {
     const res  = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`, { headers:{'Accept-Language':'en'} });
     const data = await res.json();
@@ -1008,12 +1001,21 @@
     throw new Error('Geocode failed: ' + address);
   }
 
-  /* ── Main drawMap function (called after shipment loaded) ─ */
   async function drawMap(shipment) {
-    ensureMap();
+    if (!window._mapReady) { window._pendingShipment = shipment; return; }
+
+    if (!_map) {
+      _map = new google.maps.Map(document.getElementById('track-map'), {
+        center:{lat:20,lng:25}, zoom:3, styles:MIDNIGHT_STYLE,
+        disableDefaultUI:true, zoomControl:true,
+        zoomControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM},
+        gestureHandling:'cooperative', backgroundColor:'#061422',
+      });
+    }
     clearMap();
 
     const { data: stops } = await db.from('route_stops').select('*').eq('shipment_id', shipment.id).order('stop_index',{ascending:true});
+
     const rawTransport = shipment.transport_type || 'plane';
     const baseType = rawTransport.split('|')[0];
 
@@ -1028,8 +1030,8 @@
       ? { lat: parseFloat(shipment.destination_lat), lng: parseFloat(shipment.destination_lng) } : null;
 
     try {
-      if (!originCoords && shipment.origin)      originCoords = await geocode(shipment.origin);
-      if (!destCoords   && shipment.destination) destCoords   = await geocode(shipment.destination);
+      if (!originCoords && shipment.origin) originCoords = await geocode(shipment.origin);
+      if (!destCoords && shipment.destination) destCoords = await geocode(shipment.destination);
     } catch(e) { console.warn('Geocode fail:', e); }
 
     if (originCoords && destCoords) {
@@ -1040,7 +1042,10 @@
       );
     } else {
       const cur = shipment.lat && shipment.lng ? { lat:parseFloat(shipment.lat), lng:parseFloat(shipment.lng) } : null;
-      if (cur) { placeTransport(cur.lat, cur.lng, baseType); _map.setView([cur.lat, cur.lng], 5); }
+      if (cur) {
+        placeTransport(cur.lat, cur.lng, baseType);
+        _map.panTo(cur); _map.setZoom(5);
+      }
     }
 
     const strip = document.getElementById('d-map-strip');
@@ -1048,157 +1053,127 @@
       const diff = Math.floor((Date.now() - new Date(shipment.updated_at)) / 60000);
       strip.textContent = `Updated ${diff < 1 ? 'just now' : diff + 'm ago'}`;
     }
-
-    // Fix grey map issue: force Leaflet to recalculate container size after rendering
-    setTimeout(() => {
-      if (_map) _map.invalidateSize();
-    }, 400);
   }
 
-  /* ── Render route stops on the Leaflet map ───────────────── */
   function renderWithStops(stops, curIdx, shipment, ttype) {
+    ensurePulse();
     const sorted = [...stops].sort((a,b) => a.stop_index - b.stop_index);
     const total  = sorted.length;
     const idx    = Math.max(0, Math.min(curIdx, total - 1));
-    const coords = sorted.map(s => [parseFloat(s.lat), parseFloat(s.lng)]);
+    const coords = sorted.map(s => ({ lat: parseFloat(s.lat), lng: parseFloat(s.lng) }));
     const status = (shipment.status||'').trim();
 
-    /* Traveled line — green solid */
     if (idx > 0) {
-      _traveledLine = L.polyline(coords.slice(0, idx+1), {
-        color: '#22c55e', weight: 3.5, opacity: 1
-      }).addTo(_map);
+      _traveledLine = new google.maps.Polyline({ path:coords.slice(0,idx+1), geodesic:true, strokeColor:'#22c55e', strokeOpacity:1, strokeWeight:3.5, map:_map, zIndex:2 });
     }
-
-    /* Planned line — orange dashed */
     if (idx < total - 1) {
-      _plannedLine = L.polyline(coords.slice(idx), {
-        color: '#F26419', weight: 2.5, opacity: 0.75,
-        dashArray: '10, 8'
-      }).addTo(_map);
+      _plannedLine = new google.maps.Polyline({
+        path:coords.slice(idx), geodesic:true, strokeOpacity:0,
+        icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:0.7,strokeColor:'#7c3aed',scale:2.5},offset:'0',repeat:'14px'}],
+        map:_map, zIndex:1
+      });
     }
 
-    /* Stop markers */
-    sorted.forEach((stop, i) => {
-      const pos = [parseFloat(stop.lat), parseFloat(stop.lng)];
-      let icon;
+    sorted.forEach((stop,i) => {
+      const pos = { lat: parseFloat(stop.lat), lng: parseFloat(stop.lng) };
+      let svg;
       if (i === 0) {
         const passed = idx > 0;
-        const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="20" fill="${passed?'#22c55e':'#5b21b6'}" stroke="white" stroke-width="2"/><text x="22" y="28" text-anchor="middle" font-size="18" fill="white">${passed?'✓':'🏁'}</text></svg>`;
-        icon = L.divIcon({ html: svg, iconSize:[44,44], iconAnchor:[22,22], className:'' });
+        svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="20" fill="${passed?'#22c55e':'#5b21b6'}" stroke="white" stroke-width="2"/><text x="22" y="28" text-anchor="middle" font-size="18" fill="white">${passed?'Γ£ô':'≡ƒÅü'}</text></svg>`;
       } else if (i === total-1) {
-        const isDelivered = status === 'Delivered';
-        const color = isDelivered ? '#16a34a' : '#FF8C00';
-        const pinSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 42" width="30" height="42"><path d="M15 0 C6.7 0 0 6.7 0 15 C0 26.25 15 42 15 42 C15 42 30 26.25 30 15 C30 6.7 23.3 0 15 0Z" fill="${color}"/><circle cx="15" cy="15" r="7" fill="white" opacity="0.9"/></svg>`;
-        icon = L.divIcon({ html: pinSvg, iconSize:[30,42], iconAnchor:[15,42], className:'' });
+        const isDelivered = status==='Delivered';
+        svg = null;
+        const m = new google.maps.Marker({ position:pos, map:_map, title:stop.name||'Destination', icon:{path:'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',fillColor:isDelivered?'#16a34a':'#FF8C00',fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5,scale:1.2,anchor:new google.maps.Point(0,0)}, zIndex:10 });
+        _stopMarkers.push(m);
+        return;
       } else {
         const isPast=i<idx, isCurrent=i===idx, isNext=i===idx+1;
         const bg = isPast?'#16a34a':isCurrent?'#FF8C00':isNext?'#7c3aed':'#64748b';
-        const inner = isPast?'✓':i;
-        const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="${bg}" stroke="white" stroke-width="2.5"/><text x="19" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="${isPast?13:11}" font-weight="700" fill="white">${inner}</text></svg>`;
-        icon = L.divIcon({ html: svg, iconSize:[38,38], iconAnchor:[19,19], className:'' });
+        const inner = isPast?'Γ£ô':i;
+        svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="${bg}" stroke="white" stroke-width="2.5"/><text x="19" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="${isPast?13:11}" font-weight="700" fill="white">${inner}</text></svg>`;
       }
-      const marker = L.marker(pos, { icon, zIndexOffset: 100 })
-        .bindTooltip(stop.name || `Stop ${i}`, { permanent:false, direction:'top' })
-        .addTo(_map);
-      _stopMarkers.push(marker);
+      const m = new google.maps.Marker({ position:pos, map:_map, title:stop.name||`Stop ${i}`, icon:{url:'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg),scaledSize:new google.maps.Size(i===0?44:38,i===0?44:38),anchor:new google.maps.Point(i===0?22:19,i===0?22:19)}, zIndex:10 });
+      _stopMarkers.push(m);
     });
 
-    /* Transport / status marker */
     const startCoord = coords[idx];
     if (status === 'Delivered') {
-      const delSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="24" fill="#16a34a" stroke="white" stroke-width="2.5"/><text x="26" y="35" text-anchor="middle" font-size="26" fill="white">✓</text></svg>`;
-      _transportMarker = L.marker(coords[total-1], {
-        icon: L.divIcon({ html: delSvg, iconSize:[52,52], iconAnchor:[26,26], className:'' }),
-        zIndexOffset: 300
-      }).addTo(_map);
+      const delSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="24" fill="#16a34a" stroke="white" stroke-width="2.5"/><text x="26" y="35" text-anchor="middle" font-size="26" fill="white">Γ£ô</text></svg>`;
+      _transportMarker = new google.maps.Marker({ position:coords[total-1], map:_map, icon:{url:'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(delSvg),scaledSize:new google.maps.Size(52,52),anchor:new google.maps.Point(26,26)}, zIndex:25 });
     } else if (status === 'On Hold') {
       const holdSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="24" fill="#1d4ed8" stroke="white" stroke-width="2.5"/><rect x="14" y="13" width="9" height="26" rx="3" fill="white"/><rect x="29" y="13" width="9" height="26" rx="3" fill="white"/></svg>`;
-      _transportMarker = L.marker(startCoord, {
-        icon: L.divIcon({ html: holdSvg, iconSize:[52,52], iconAnchor:[26,26], className:'' }),
-        zIndexOffset: 300
-      }).addTo(_map);
+      _transportMarker = new google.maps.Marker({ position:startCoord, map:_map, icon:{url:'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(holdSvg),scaledSize:new google.maps.Size(52,52),anchor:new google.maps.Point(26,26)}, zIndex:25 });
     } else {
-      placeTransport(startCoord[0], startCoord[1], ttype);
+      placeTransport(startCoord.lat, startCoord.lng, ttype);
     }
 
-    /* Pulse ring overlay via Leaflet DivIcon */
-    _pulseLayer = L.marker(startCoord, {
-      icon: L.divIcon({
-        html: `<div class="pulse-ring"></div><div class="pulse-ring delay"></div>`,
-        iconSize: [60,60], iconAnchor: [30,30], className:''
-      }),
-      interactive: false, zIndexOffset: 50
-    }).addTo(_map);
+    _pulseOverlay = new _PulseClass(new google.maps.LatLng(startCoord.lat, startCoord.lng));
+    _pulseOverlay.setMap(_map);
 
-    /* Start animation for In Transit */
     if (status === 'In Transit' && _transportMarker) {
       const remaining = coords.slice(idx);
       if (remaining.length >= 2) {
+        // Calculate real total route distance for accurate speed pacing
         let totalKm = 0;
         for (let i = 0; i < coords.length - 1; i++) totalKm += haversineKmTrack(coords[i], coords[i+1]);
         startAnim(remaining, ttype, totalKm, shipment);
       }
     }
 
-    /* Map strip status */
     const strip = document.getElementById('d-map-strip');
     if (strip) {
       const pct = total > 1 ? Math.round((idx / (total-1)) * 100) : 100;
-      strip.textContent = status === 'Delivered'
-        ? `🎉 Delivered · All ${total-1} stops completed`
-        : `Stop ${idx} of ${total-1} · ${pct}% complete`;
+      strip.textContent = status === 'Delivered' ? `≡ƒÄë Delivered ┬╖ All ${total-1} stops completed` : `Stop ${idx} of ${total-1} ┬╖ ${pct}% complete`;
     }
 
-    /* Fit map bounds */
-    const bounds = L.latLngBounds(coords);
-    _map.fitBounds(bounds, { padding: [60, 60] });
+    const bounds = new google.maps.LatLngBounds();
+    coords.forEach(c => bounds.extend(c));
+    _map.fitBounds(bounds, { top:80, right:60, bottom:60, left:60 });
   }
 
-  /* ── Place the moving transport icon ────────────────────── */
   function placeTransport(lat, lng, type) {
-    const svgs = { plane:[56,56], ship:[64,44], bus:[72,46], train:[78,46] };
-    const [w,h] = svgs[type] || svgs.plane;
-    const svg = getTransportSVG(type);
-    const icon = L.icon({ iconUrl: svg, iconSize:[w,h], iconAnchor:[w/2,h/2] });
+    const pos  = new google.maps.LatLng(lat, lng);
+    const sizes = { plane:[56,56], ship:[64,44], bus:[72,46], train:[78,46] };
+    const anchors = { plane:[28,28], ship:[32,22], bus:[36,23], train:[39,23] };
+    const [w,h] = sizes[type]||sizes.plane;
+    const [ax,ay] = anchors[type]||anchors.plane;
     if (_transportMarker) {
-      _transportMarker.setIcon(icon);
-      _transportMarker.setLatLng([lat, lng]);
+      _transportMarker.setIcon({ url:getTransportSVG(type), scaledSize:new google.maps.Size(w,h), anchor:new google.maps.Point(ax,ay) });
+      _transportMarker.setPosition(pos);
     } else {
-      _transportMarker = L.marker([lat, lng], { icon, zIndexOffset:300 }).addTo(_map);
+      _transportMarker = new google.maps.Marker({ position:pos, map:_map, title:'Live Cargo Location', icon:{url:getTransportSVG(type),scaledSize:new google.maps.Size(w,h),anchor:new google.maps.Point(ax,ay)}, animation:google.maps.Animation.DROP, zIndex:20 });
     }
   }
 
-  /* ── Haversine distance ─────────────────────────────────── */
   function haversineKmTrack(a, b) {
     const R = 6371;
-    const toLat = p => Array.isArray(p) ? p[0] : p.lat;
-    const toLng = p => Array.isArray(p) ? p[1] : p.lng;
-    const dLat = (toLat(b) - toLat(a)) * Math.PI / 180;
-    const dLng = (toLng(b) - toLng(a)) * Math.PI / 180;
-    const h = Math.sin(dLat/2)**2 + Math.cos(toLat(a)*Math.PI/180)*Math.cos(toLat(b)*Math.PI/180)*Math.sin(dLng/2)**2;
+    const dLat = (b.lat - a.lat) * Math.PI / 180;
+    const dLng = (b.lng - a.lng) * Math.PI / 180;
+    const h = Math.sin(dLat/2)**2 + Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)**2;
     return R * 2 * Math.asin(Math.sqrt(h));
   }
 
-  /* ── Animation loop ─────────────────────────────────────── */
   function startAnim(waypoints, type, totalDistKm, shipment) {
     if (_animId) { cancelAnimationFrame(_animId); _animId = null; }
     if (!_transportMarker || waypoints.length < 2) return;
 
     const rawTransport = shipment && shipment.transport_type ? shipment.transport_type : type;
-    const customSpeed  = rawTransport.split('|')[1];
-    let realSpeedKmH   = { plane:900, ship:40, bus:80, train:120 }[type] || 900;
-    if (customSpeed && !isNaN(parseInt(customSpeed))) realSpeedKmH = parseInt(customSpeed, 10);
+    const customSpeed = rawTransport.split('|')[1];
+    
+    let realSpeedKmH = { plane: 900, ship: 40, bus: 80, train: 120 }[type] || 900;
+    if (customSpeed && !isNaN(parseInt(customSpeed))) {
+      realSpeedKmH = parseInt(customSpeed, 10);
+    }
     const speedKmPerMs = realSpeedKmH / 3600000;
 
-    const toLat = p => Array.isArray(p) ? p[0] : p.lat;
-    const toLng = p => Array.isArray(p) ? p[1] : p.lng;
-
     const segDistances = waypoints.slice(0,-1).map((_,i) => haversineKmTrack(waypoints[i], waypoints[i+1]));
-    const routeKm      = totalDistKm || segDistances.reduce((a,b)=>a+b,0) || 1;
-    const totalTripMs  = routeKm / speedKmPerMs;
-    const shippedTime  = (shipment && shipment.updated_at) ? new Date(shipment.updated_at).getTime() : Date.now();
+    const routeKm = totalDistKm || segDistances.reduce((a,b) => a+b, 0) || 1;
+    const totalTripMs = routeKm / speedKmPerMs;
 
+    // Use updated_at (exact UTC timestamp) instead of shipped_date (which can be in the future due to timezone parsing)
+    // This ensures the plane starts moving exactly when marked "In Transit"
+    const shippedTime = (shipment && shipment.updated_at) ? new Date(shipment.updated_at).getTime() : Date.now();
+    
     const distEl = document.getElementById('d-distance');
     const etaEl  = document.getElementById('d-eta');
     const etaSub = document.getElementById('d-eta-sub');
@@ -1206,50 +1181,65 @@
     function fmtETA(hours) {
       if (hours <= 0)   return 'Arriving';
       if (hours < 1/60) return '< 1 min';
-      if (hours < 1)    return `${Math.round(hours*60)} min`;
-      if (hours < 48)   return `${Math.floor(hours)}h ${Math.round((hours%1)*60)}min`;
-      return `${Math.ceil(hours/24)} days`;
+      if (hours < 1)    return `${Math.round(hours * 60)} min`;
+      if (hours < 48)   return `${Math.floor(hours)}h ${Math.round((hours % 1) * 60)}min`;
+      return `${Math.ceil(hours / 24)} days`;
     }
 
     function tick() {
       if (!_transportMarker) return;
+      
       const now = Date.now();
-      let elapsedMs = Math.max(0, now - shippedTime);
-      let progress  = Math.min(elapsedMs / totalTripMs, 0.999);
+      let elapsedMs = now - shippedTime;
+      if (elapsedMs < 0) elapsedMs = 0;
+      
+      let currentProgress = elapsedMs / totalTripMs;
+      // Cap at 99.9% so it doesn't say 0km until officially marked "Delivered"
+      if (currentProgress > 0.999) currentProgress = 0.999;
 
-      const coveredKm   = progress * routeKm;
+      const coveredKm = currentProgress * routeKm;
       const remainingKm = Math.max(0, routeKm - coveredKm);
 
-      let accum = 0, seg = 0, segT = 0;
+      let accum = 0;
+      let seg = 0;
+      let segRawT = 0;
       for (let i = 0; i < segDistances.length; i++) {
         if (accum + segDistances[i] >= coveredKm) {
-          seg  = i;
-          segT = (coveredKm - accum) / (segDistances[i] || 1);
+          seg = i;
+          segRawT = (coveredKm - accum) / (segDistances[i] || 1);
           break;
         }
         accum += segDistances[i];
       }
-      if (seg >= waypoints.length - 1) { seg = waypoints.length - 2; segT = 1; }
+      if (seg >= waypoints.length - 1) {
+        seg = waypoints.length - 2;
+        segRawT = 1;
+      }
 
       const from = waypoints[seg], to = waypoints[seg+1];
-      const lat  = toLat(from) + (toLat(to) - toLat(from)) * segT;
-      const lng  = toLng(from) + (toLng(to) - toLng(from)) * segT;
+      const pos = new google.maps.LatLng(
+        from.lat + (to.lat - from.lat) * segRawT, 
+        from.lng + (to.lng - from.lng) * segRawT
+      );
+      _transportMarker.setPosition(pos);
+      if (_pulseOverlay) _pulseOverlay.moveTo(pos);
 
-      _transportMarker.setLatLng([lat, lng]);
-      if (_pulseLayer) _pulseLayer.setLatLng([lat, lng]);
-
-      if (distEl) distEl.textContent = remainingKm.toLocaleString(undefined,{minimumFractionDigits:1,maximumFractionDigits:1}) + ' km';
+      // Show 1 decimal point for "fast dropping" live ticker effect
+      if (distEl) distEl.textContent = remainingKm.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1}) + ' km';
       if (etaEl) {
         const remainingHours = remainingKm / realSpeedKmH;
         etaEl.textContent = fmtETA(remainingHours);
-        if (etaSub) etaSub.textContent = remainingHours <= 0 ? '🎉 Destination reached!' : 'Time remaining';
+        if (etaSub) etaSub.textContent = remainingHours <= 0 ? '≡ƒÄë Destination reached!' : 'Time remaining';
       }
+
       _animId = requestAnimationFrame(tick);
     }
     _animId = requestAnimationFrame(tick);
   }
   </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzf6w-rn68amA_RXuVcSlQ1xBtoB3-iuM&callback=initTrackMap"></script>
   <!-- Smartsupp Live Chat script -->
+
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = '795652fc6034f6effb6a6a880636aa99e7d8d7f8';
